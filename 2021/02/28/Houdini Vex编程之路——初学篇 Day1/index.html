@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>Houdini Vex编程之路——初学篇 Day1 - Katana Production</title>
+  
+    <meta name="keywords" content="HoudiniVex">
+  
+
+  
+    <meta name="description" content="这是一个种种意义上的非常时期，在此记录下我的学习过程。
+本系列文章内容主要是Houdini中的VEX学习以及应用技巧，将包含本人主要参考的CGWIKI上的系列文章为主，对其内容进行翻译等，本系列的学习周期为20天，每天5到30分钟练习。">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+    <link rel="shortcut icon" type='image/x-icon' href="https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/KatanaStudio-LOGO.ico">
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+
+<script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) document.write('\x3Cscript id="_iealwn_js" data-outver="11" src="https://support.dmeng.net/ie-alert-warning/latest.js">\x3C/script>'); </script>
+
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header always shadow blur show"  >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+            <img no-lazy class='logo' src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/KatanaStudio-LOGO%20(1)%20(1).png'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210301012742.png"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Katana Production</p>
+    
+    
+      <p class="subtitle">LevelDesigner&TechArt&Translator Apprentice</p>
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/v4/getting-started/"
+              
+              
+              id="v4getting-started">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg'><p>文档</p>
+            </a>
+          
+            <a href="/faqs/"
+              
+              
+              id="faqs">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg'><p>帮助</p>
+            </a>
+          
+            <a href="/examples/"
+              
+              
+              id="examples">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg'><p>示例</p>
+            </a>
+          
+            <a href="/contributors/"
+              
+              
+              id="contributors">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg'><p>社区</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        Houdini Vex编程之路——初学篇 Day1
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png">
+    <p>Katana</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/TechArt/">TechArt</a><span class="sep"></span><a class="category-link" href="/categories/TechArt/Houdini/">Houdini</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年2月28日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Houdini Vex编程之路——初学篇 Day1" data-path="/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day1/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <p>这是一个种种意义上的非常时期，在此记录下我的学习过程。</p>
+<p>本系列文章内容主要是Houdini中的VEX学习以及应用技巧，将包含本人主要参考的CGWIKI上的系列文章为主，对其内容进行翻译等，本系列的学习周期为20天，每天5到30分钟练习。</p>
+<a id="more"></a>
+
+<p>特在此附上原作者网站以及文章链接（20天学习VEX）</p>
+<p><a target="_blank" rel="noopener" href="https://www.tokeru.com/cgwiki/index.php?title=JoyOfVex">http://www.tokeru.com/cgwiki/index.php?title=JoyOfVex…</a></p>
+<p><strong>网站底部可以打赏原作者</strong></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>学习Houdini有几个阶段；学习和认识节点以及程序化主义思想是一个，动力学系统是一个，vops则是另一个，但是对于没有没有计算机程序语言基础的你来说，看似最艰巨的其实是学习VEX。</p>
+<p>本系列课程旨在使您减少恐惧感。它不是针对Houdini初学者的。这些课程进展很快，并假设您了解几何属性，sops，并对如何解决Houdini的问题有着一定的了解。但是它也不是vex的完整编写学习课程，这是一个很大的任务，无法在20个简短的课程中处理。（译者：系列文章结束后本人将附上全面的学习以及应用资料）</p>
+<p>相反，本系列旨在像是一本学习外语的短语集合。在20天内您并不会成为熟练的vex大师，但是这些课程涵盖了我们80％的工作中所使用的vex的知识，并将使您可以在其他地方找到更复杂的vex示例。在本系列的最后，我提供了一些指向其他资源的链接。</p>
+<p><strong>第一天：基本分配，组件分配，算术运算</strong></p>
+<p>教程文件下载链接：<a target="_blank" rel="noopener" href="https://www.tokeru.com/cgwiki/images/7/74/Joy_of_vex.hipnc">http://www.tokeru.com/cgwiki/images/7/74/Joy_of_vex.hipnc…</a></p>
+<p>为了节省时间，文件内预先配置了一些有趣的几何体，位于切换节点(Switch)后面，然后是坐标变换节点(Transfrom)，点模式下的法线节点(Normal)，点属性节点(Point Wrange)。在学习这些教程时，您可以调整开关状态和坐标位置以尝试不同的几何形状，更改比例和旋转角度，以及查看Vex代码在不同上下文中的运作方式。</p>
+<p><img src="https://www.tokeru.com/cgwiki/images/2/2c/Joyofvex_basics.gif" class="lazyload" data-srcset="https://www.tokeru.com/cgwiki/images/2/2c/Joyofvex_basics.gif" srcset="data:image/png;base64,666"></p>
+<p>附件中演示了Houdini中的基础操作</p>
+<p>使用vex时（通常对于Houdini），能够看到几何属性很重要。一种快速的方法是拆分视图窗口，然后将下部窗格设置为几何体的电子表格(Geo spreadsheet)。快速组合键是Alt-]进行拆分，然后在下部窗格中按Alt-8即可加载几何体的电子表格。这样做，将其保存为默认视窗，稍后您将感谢我。:)</p>
+<h2 id="颜色-Colour"><a href="#颜色-Colour" class="headerlink" title="颜色(Colour)"></a><strong>颜色(Colour)</strong></h2><p>使用vex可以做的最简单的事情之一就是根据属性设置几何体的颜色。在点属性(Point Wrganle)文本编辑器中尝试以下操作，完成键入以使Houdini执行代码后，按Control-Enter（或在OSX上输入命令）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@ Cd &#x3D;  @ N ;</span><br></pre></td></tr></table></figure>
+<p>和</p>
+<p>@ Cd = @ P ;</p>
+<p>通过坐标变换节点(Transfrom)旋转/位移/缩放，请参见值更改。</p>
+<p><img src="https://www.tokeru.com/cgwiki/images/b/bf/Joyofvex1_col.gif" class="lazyload" data-srcset="https://www.tokeru.com/cgwiki/images/b/bf/Joyofvex1_col.gif" srcset="data:image/png;base64,666"></p>
+<p>输入你的第一行VEX代码</p>
+<h2 id="属性组成-Attribute-components"><a href="#属性组成-Attribute-components" class="headerlink" title="属性组成(Attribute components)"></a><strong>属性组成(Attribute components)</strong></h2><p>@Cd是向量，@ P和@N也是向量，因此可以轻松地将它们相互指定，因为类型兼容。</p>
+<p>您还可以引用子组件，例如@P的x组件，格式为@P.x：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; @P.x;</span><br></pre></td></tr></table></figure>
+<p>@N也是如此：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; @N.y;</span><br></pre></td></tr></table></figure>
+<p>Vex正在为您做一些隐藏的工作，获取该浮点值（例如0.2），并将其转换为每个分量都相同的向量（0.2、0.2、0.2）, 方便。</p>
+<p><img src="https://www.tokeru.com/cgwiki/images/f/f8/Joyofvex1_component.gif" class="lazyload" data-srcset="https://www.tokeru.com/cgwiki/images/f/f8/Joyofvex1_component.gif" srcset="data:image/png;base64,666"></p>
+<h2 id="基础数学-Basic-maths"><a href="#基础数学-Basic-maths" class="headerlink" title="基础数学(Basic maths)"></a><strong>基础数学(Basic maths)</strong></h2><p>Vex基于C（就像许多计算机语言一样），这意味着简单的算法很容易实现。</p>
+<p>例如，如果切换到平面(grid)，并使用@Cd = @P.x，如果查看几何体电子表格，则可以看到一侧的所有内容都是黑色的，因为@P.x的中心变为0，然后为负值。另一边，要更改值开始变黑的位置，可以添加偏移量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; @P.x + 3;</span><br></pre></td></tr></table></figure>
+<p>或减去偏移量以另一种方式位移黑点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; @P.x - 6;</span><br></pre></td></tr></table></figure>
+<p>或乘或除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; @P.x -6 * 0.1;</span><br></pre></td></tr></table></figure>
+<p>可以使用括号来控制操作顺序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; (@P.x-6) * 0.3;</span><br></pre></td></tr></table></figure>
+<h2 id="指定组件-Assigning-to-components"><a href="#指定组件-Assigning-to-components" class="headerlink" title="指定组件(Assigning to components)"></a><strong>指定组件(Assigning to components)</strong></h2><p>之前我们阅读了组件并将其分配给@Cd。您还可以分配给组件，因此我们可以对@Cd的红色，绿色，蓝色通道执行不同的操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@Cd.x &#x3D; @P.x-3 * 1.2;</span><br><span class="line">@Cd.y &#x3D; @P.z+2;</span><br><span class="line">@Cd.z &#x3D; @P.y;</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.tokeru.com/cgwiki/images/c/cc/Joyofvex1_component_assign.gif" class="lazyload" data-srcset="https://www.tokeru.com/cgwiki/images/c/cc/Joyofvex1_component_assign.gif" srcset="data:image/png;base64,666"></p>
+<p>到目前为止，我们一直在使用@P，@N和@Cd，但是如果您稍微使用过Houdini，您就会知道每个点都有自己的ID，您可以在几何电子表格的第一列中看到它。您也可以使用属性@ptnum（point number）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; @ptnum;</span><br></pre></td></tr></table></figure>
+<p>视觉上并不是很有趣，第一个点是黑色（因为其@ptnum为0），第二个点是白色（@ptnum为1），然后其他所有点都是“ superwhite”，视口仅显示为白色。我们该怎么做才能解决这个问题？</p>
+<p>@ptnum旁是另一个方便的内置属性，它是总点数@numpt。因此，获得所有点在0到1范围内的颜色渐变的一种简单方法是，将当前点号除以第一个点颜色为{0,0,0}，最后一个点为{1,1,1}按总分：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@ Cd &#x3D;  @ ptnum &#x2F; @ numpt ;</span><br></pre></td></tr></table></figure>
+<p>除此之外……它都无法工作。原因还要回到大多数编程语言如何处理数字这个问题上。@ptnum和@numpt是整数属性，这意味着它们没有小数部分，也没有能力处理小数点后的值。当用整数除以整数时，会得到一个整数，这对我们不利。</p>
+<p>如果我们可以将第一个数字转换为浮点数，则浮点数除以整数将返回浮点数。</p>
+<p>您可以在称为Cast的过程中执行此操作。您将要转换的值包装在方括号中，然后在括号告诉它您想要的类型之前：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; float(@ptnum)&#x2F;@numpt;</span><br></pre></td></tr></table></figure>
+<p>如果需要，我们可以将@numpt替换为任何数字，这将更改渐变的白点发生的位置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; float(@ptnum)&#x2F;100;</span><br></pre></td></tr></table></figure>
+<h2 id="通道-Channels"><a href="#通道-Channels" class="headerlink" title="通道(Channels)"></a><strong>通道(Channels)</strong></h2><p>使用wrangles时，您会发现自己想要不断更改的某些值，例如上述wrangle代码的第二部分。您可以使用函数ch读取输入内容，而不是不断编辑代码并按ctrl-enter 。这将创建一个通道引用，该代码将在其中查找UI滑块并读取其值。要创建这些参数滑块，以前有点复杂，现在只需单击wrangle编辑器右侧的小按钮即可。它将扫描您的vex代码，查找尚未创建的任何渠道，然后为您创建渠道。ch调用中的文本成为参数的名称：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; float(@ptnum)&#x2F;ch(&#39;scale&#39;);</span><br></pre></td></tr></table></figure>
+<p>请注意，虽然默认滑块范围是0到1，但是像houdini中的其他参数一样，您可以根据需要将高到1以上或低到负数）：</p>
+<p><img src="https://www.tokeru.com/cgwiki/images/9/9e/Joyofvex1_ch.gif" class="lazyload" data-srcset="https://www.tokeru.com/cgwiki/images/9/9e/Joyofvex1_ch.gif" srcset="data:image/png;base64,666"></p>
+<h2 id="正弦-Sine"><a href="#正弦-Sine" class="headerlink" title="正弦(Sine)"></a><strong>正弦(Sine)</strong></h2><p>是时候介绍我们的第一个vex函数sin了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@ Cd &#x3D; sin （@ ptnum ）;</span><br></pre></td></tr></table></figure>
+<p>这提供了一个在-1和1之间振荡的基本波动函数。vex常常被书呆子们所使用(喜好埋头钻研之人)，所以sin利用表示着弧度，这意味着它每间隔pi * 2的偏移单位，从0到1，到0，再到-1，最后再回到0（因此我们使用ptnum，每次@ptnum是3.1415 * 2的倍数（即6位）时，大约都会得到一个波长。</p>
+<p>如果我们要更改波形重复的频率，请更改ptnum更改的速度。举例来说：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; sin(@ptnum&#x2F;100);</span><br></pre></td></tr></table></figure>
+<p>哦！用那讨厌的int再除以int，首先转换为浮点数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; sin(float(@ptnum)&#x2F;100);</span><br></pre></td></tr></table></figure>
+<p>或者通过滑块，现在可以直接绘制重复的图案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cd &#x3D; sin(float(@ptnum)&#x2F;ch(&#39;scale&#39;));</span><br></pre></td></tr></table></figure>
+<p>作为一行代码是令人讨厌的，打破并且扩展为两行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">float foo &#x3D; float(@ptnum)&#x2F;ch(&#39;scale&#39;);</span><br><span class="line">@Cd &#x3D; sin(foo);</span><br></pre></td></tr></table></figure>
+<h2 id="变量-Variables"><a href="#变量-Variables" class="headerlink" title="变量(Variables)"></a><strong>变量(Variables)</strong></h2><p>讨论在第一天提出，或者在那以后，但是您已经是个大孩子了，可以独自处理。</p>
+<p>以@开头的事物是attribute，数据位于几何体上。正如我们已经完成的，您既可以读取属性也可以写入属性。很多时候，尽管您首先要进行一些计算，然后再继续增加计算次数，然后通过函数运行，使用滑块进行调整等方法，直到最终决定所将要写入的属性。</p>
+<p>如果这些中间值是临时的，并且以后不太可能使用它们，那么您可，名称以及可选的直接赋值来定义它们，如我们在此所做的。</p>
+<p>以创建仅存在于VEX中的数,这些称为变量，您可以通过首先设置类型（浮点数，整数，向量等）为了更明确地说明这一点，变量仅存在于VEX中，它们永远不会像属性一样转移到几何体当中。请记住：</p>
+<p>变量是临时丢弃的数据，仅存在于VEX代码内</p>
+<p>属性是几何体上的数据。</p>
+<p>这些波形基于@ptnum。如果要从每个点x位置驱动它们，请用@ptnum代替@Px：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">float foo &#x3D; float(@P.x)&#x2F;ch(&#39;scale&#39;);</span><br><span class="line">@Cd &#x3D; sin(foo);</span><br></pre></td></tr></table></figure>
+<p>我之前提到过@P的组件是浮点数（您可以在1.2、0.0003、14223.2433等位置），因此我们不需要强制转换。干净的代码=好的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">float foo &#x3D; @P.x&#x2F;ch(&#39;scale&#39;);</span><br><span class="line">@Cd &#x3D; sin(foo);</span><br></pre></td></tr></table></figure>
+<h2 id="练习-Exercises"><a href="#练习-Exercises" class="headerlink" title="练习(Exercises)"></a><strong>练习(Exercises)</strong></h2><ol>
+<li>z上有Sin波形时？在y上时呢？</li>
+<li>COS波形呢？（不会看起来大不相同，cos只是正弦偏移了1/4浪）</li>
+<li>当波形基于@N组件时呢？</li>
+<li>红色又紧密的正弦波形，蓝色又中等紧密程度的余弦波形，最后绿色又宽阔的渐变正弦波形，每个都是由不同的东西驱动的（位置，法线，点数）</li>
+</ol>
+<h2 id="背景之外的资料-Background-bonus-material"><a href="#背景之外的资料-Background-bonus-material" class="headerlink" title="背景之外的资料(Background bonus material)"></a><strong>背景之外的资料(Background bonus material)</strong></h2><p>请注意，考虑到它在做什么，一行@Cd = @P的非常优雅。在大多数其他语言中，您必须以某种方式遍历所有点，创建@Cd并分配内存（如果尚不存在），更新@Cd，然后可能必须考虑自己的方式来加快速度当性能下降时，或者仅仅接受它会很慢。Vex为您完成所有工作，太酷了。</p>
+<p>编码的一个缺点，尤其是在像vex wrangle编辑器这样的准系统中，当您弄错了事情时，这是非常宽容的。错误消息是令人难以置信的，语法错误很容易造成，帮助并不总是有用的。在反面，大多数纠缠往往是1或2行，如果您喜欢的话，通常是10到20行，因此调试起来并不费力。稍后我们将介绍一些简单的调试技术。</p>
+<blockquote>
+<p>Katana编译于 2019-10-01</p>
+</blockquote>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://katanaproduction.cn/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day1/>https://katanaproduction.cn/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day1/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-02T01:20:09+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年3月2日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/HoudiniVex/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>HoudiniVex</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://katanaproduction.cn/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day1/&title=Houdini Vex编程之路——初学篇 Day1 - Katana Production&summary=这是一个种种意义上的非常时期，在此记录下我的学习过程。
+本系列文章内容主要是Houdini中的VEX学习以及应用技巧，将包含本人主要参考的CGWIKI上的系列文章为主，对其内容进行翻译等，本系列的学习周期为20天，每天5到30分钟练习。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://katanaproduction.cn/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day1/&title=Houdini Vex编程之路——初学篇 Day1 - Katana Production&summary=这是一个种种意义上的非常时期，在此记录下我的学习过程。
+本系列文章内容主要是Houdini中的VEX学习以及应用技巧，将包含本人主要参考的CGWIKI上的系列文章为主，对其内容进行翻译等，本系列的学习周期为20天，每天5到30分钟练习。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://katanaproduction.cn/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day1/&title=Houdini Vex编程之路——初学篇 Day1 - Katana Production&summary=这是一个种种意义上的非常时期，在此记录下我的学习过程。
+本系列文章内容主要是Houdini中的VEX学习以及应用技巧，将包含本人主要参考的CGWIKI上的系列文章为主，对其内容进行翻译等，本系列的学习周期为20天，每天5到30分钟练习。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day2/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Houdini Vex编程之路——初学篇 Day2</p>
+          <p class='content'>Vex具有很多功能和用法，下面的官方链接作为一个相关的整合列表。
+
+
+将它添加至书签，随着对vex的不断熟悉和了解，您将一直使用它：
+http://www.sidefx.com/docs/hou...</p>
+        </a>
+      
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2-Colour"><span class="toc-text">颜色(Colour)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E7%BB%84%E6%88%90-Attribute-components"><span class="toc-text">属性组成(Attribute components)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6-Basic-maths"><span class="toc-text">基础数学(Basic maths)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E7%BB%84%E4%BB%B6-Assigning-to-components"><span class="toc-text">指定组件(Assigning to components)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E9%81%93-Channels"><span class="toc-text">通道(Channels)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%BC%A6-Sine"><span class="toc-text">正弦(Sine)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F-Variables"><span class="toc-text">变量(Variables)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-Exercises"><span class="toc-text">练习(Exercises)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E4%B9%8B%E5%A4%96%E7%9A%84%E8%B5%84%E6%96%99-Background-bonus-material"><span class="toc-text">背景之外的资料(Background bonus material)</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="Houdini Vex编程之路——初学篇 Day1";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        本站使用
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+	
+	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/valine.min.js"></script>
+
+
+<script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  pjax_comment=pjax_valine;
+</script>
+
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://katanaproduction.cn' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://katanaproduction.cn' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://katanaproduction.cn' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      
+	  
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+       
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        if (typeof IssuesAPI == "undefined") {
+          loadIssuesJS();
+        }
+        
+		
+          try{pjax_comment();} catch (e) {}
+        
+      } catch (e) {
+        console.log(e);
+      }
+	  
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>
