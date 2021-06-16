@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -24,9 +22,15 @@
 
   <!-- 页面元数据 -->
   
-  <title>归档：2021 - Katana Production</title>
+  <title>战斗区域剖析 - Katana Production</title>
+  
+    <meta name="keywords" content="LevelDesign">
   
 
+  
+    <meta name="description" content="
+[在这份详细的设计文章中，蓝色城堡（Dead Rising 2）的关卡设计总监乔什·布里奇（Josh Bridge）研究了如何为第一人称/第三人称射击游戏设计令人难忘的战术战斗区域]
+">
   
 
   <!-- feed -->
@@ -66,7 +70,7 @@
   <body>
     
 
-<header id="l_header" class="l_header always shadow blur "  >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -317,7 +321,7 @@
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  dock' style="display: ;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210301012742.png"></div>
           
@@ -388,593 +392,370 @@
           
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-  
+
+
   
     <div class='headimg-div'>
-      <a class='headimg-a' href="/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/">
+      <a class='headimg-a'>
         <img class='headimg' src='https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003119.png'/>
       </a>
     </div>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title" >
-      <a href="/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/">
+    
+    
+      <h1 class="title">
         战斗区域剖析
-      </a>
-    </h2>
-  
-  <div class='md'>
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png">
+    <p>Katana</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/LevelDesign/">LevelDesign</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年6月17日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="战斗区域剖析" data-path="/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
     
-      <blockquote>
+  </div>
+
+
+  
+  
+  <blockquote>
 <p>[在这份详细的设计文章中，蓝色城堡（Dead Rising 2）的关卡设计总监乔什·布里奇（Josh Bridge）研究了<strong>如何为第一人称/第三人称射击游戏设计令人难忘的战术战斗区域</strong>]</p>
 </blockquote>
-    
-  </div>
+<a id="more"></a>
+
+<p>作者：乔什·布里奇（Josh Bridge）</p>
+<h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><p>以下是尝试去<strong>辨别，命名和描述</strong>典型的<strong>基于掩体的射击视频游戏</strong>玩家所必需的<strong>关键要素</strong>。在射击游戏中，核心玩法通常主要围绕着<strong>足够长的生存时间</strong>以及<strong>杀死威胁玩家或阻碍玩家前进的事物</strong>。</p>
+<p>因此，我们面临的设计挑战是，以<strong>新颖而又有趣的方式</strong>去<strong>呈现少量游戏玩法</strong>，使玩家不得不坐下来一直玩到最后……并对游玩续作保持期待。</p>
+<p>读者应当注意，本文讨论内容主要关注于<strong>关卡中的战斗区域</strong>，不应将其<strong>误解为</strong>它是<strong>关卡设计所需的唯一要素</strong>。</p>
+<h2 id="战斗区域"><a href="#战斗区域" class="headerlink" title="战斗区域"></a><strong>战斗区域</strong></h2><p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003206.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003206.png" srcset="data:image/png;base64,666"></p>
+<p><strong>战斗区域</strong>是指<strong>关卡内用于战斗的游戏区域</strong>。这是一个广义上的术语，并不一定意味着<strong>明确的物理界限</strong>……尽管在某些情况下可以。无论哪种情况，<strong>LD(关卡设计师)**都会在各种游戏的支持下创建预期的战斗区域；</strong>敌人，掩体，可破坏物体，无法通行的地点，侧翼位置等<strong>。</strong>布局和位置<strong>承载着玩家</strong>必须在该区域内进行战斗的期望**-<strong>本质上是核心游戏玩法的呈现</strong>。</p>
+<p><em>击杀区域(KILLZONE)</em></p>
+<p>定义为玩家和玩家/或AI<strong>没有掩护</strong>并且可以<strong>直接射击并可能被杀死的区域</strong>。该区域是可见的（地面上的地雷）或虚拟的（显示踪迹的道具燃烧道具）。这里<strong>设计的有效性</strong>决定了灭火的难度。如果没有<strong>有效的“击杀区域”</strong>，玩家将不需要掩护，并消除了用于<strong>游戏的关键要素之一</strong>。</p>
+<p><em>防御区域/掩体(DEFENCE)</em></p>
+<p>它应当有着保护玩家和为玩家/或AI<strong>免受直接射击的区域</strong>。没有它们，<strong>其游戏体验就会被单调地归纳为射击或被射击</strong>。<strong>掩体对于游戏风格和难度有着很大影响</strong>，后面将会进一步介绍。</p>
+<h2 id="玩家路线"><a href="#玩家路线" class="headerlink" title="玩家路线"></a><strong>玩家路线</strong></h2><p><em>按你的方法玩</em></p>
+<p>玩家应该能够<strong>按照自己想要的方式进行游戏</strong>。为什么呢？它<strong>提供了更具有创造力的体验</strong>，玩家可能希望自己再次体验。<strong>一遍又一遍地将玩家限制在一条路径和游戏风格上</strong>会很累，<strong>多样性</strong>是<strong>保持玩家参与度</strong>的关键。</p>
+<p>每个人在作为射击游戏玩家时，都有自己喜欢的打法：</p>
+<ul>
+<li><strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Run%26Gun">跑轰者</a>(Run and gun)</strong>-枪支猛烈开火，射击所有可见之物，他们通常会走<strong>主路径</strong>。  ///硬刚型</li>
+<li><strong>忍者(Ninja)</strong>-攀爬并越过所有物体，或通过其发现的小道去活动；他们通常会<strong>避免通过主路径</strong>。  ///潜袭型</li>
+<li><strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Camping_(video_games)">蹲点者</a>(Camper)</strong>-喜欢<strong>在安全区域活动</strong>，并在跑路前<strong>从尽可能远的地方进行狙击</strong>。  ///蹲点型</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003228.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003228.png" srcset="data:image/png;base64,666"></p>
+<p>在以上关卡灰盒中，包含了以上不同风格的玩家路线的示例：</p>
+<ul>
+<li>跑轰者可能会直接<strong>冲过去，开始战斗和射击，仅在必要时才会寻找掩护</strong>。</li>
+<li>忍者很可能会<strong>爬上并跳过所有的掩体</strong>，从而快速<strong>穿过活动区域</strong>。</li>
+<li>蹲点者可能会<strong>在高点上寻找安全的地方</strong>，以<strong>远距离阻击敌人</strong>。</li>
+</ul>
+<p>针对以上战斗区域，去适应不同的游戏风格，并不是一件容易的事，基于经验，我们应当从开始便进行规划。此元素对于<strong>摆脱线性/脚本化</strong>的旧式设计关卡至关重要。</p>
+<p>当你认为你的关卡草图即将完成时，请问自己一遍：</p>
+<ul>
+<li>有没有办法<strong>绕过未被发现的敌人</strong>？</li>
+<li>玩家可以潜入<strong>到敌人下方</strong>吗？</li>
+<li>玩家有多种<strong>掩体选择</strong>吗？</li>
+<li>玩家必须蹲下吗？</li>
+<li>玩家可以通过<strong>从物体跳到别的物体上</strong>的方式在空中寻路吗？</li>
+</ul>
+<hr>
+<p><strong>很明显吗？</strong></p>
+<p>在战斗区域内为玩家<strong>提供多种选择和路径</strong>可带来<strong>开放性和自由性</strong>。但是，如果玩家看不到，那一切就都不是，全都白搞。<strong>避免尝试隐藏替代路线和选项</strong>；<strong>一切都应该显而易见</strong>！</p>
+<p>通过以下方式在路径上展示给玩家：</p>
+<ul>
+<li><strong>直面玩家</strong>：尽快<strong>向玩家</strong>展示其选择。在<strong>战斗区域入口处</strong>以<strong>更严格的路径引导玩家</strong>会增加他们<strong>朝向正确方向的几率</strong>。</li>
+<li>注意：路径<strong>不一定需要使用固定的静态网格物体</strong>进行限制。可以<strong>引导玩家注意可移动物体的危险</strong>，以<strong>鼓励他们应移动的方向</strong>。一些参与者会忽略这一点并继续前进，但是大多数的玩家<strong>会跟随并避免尝试继续前进</strong>。</li>
+<li><strong>度量指标</strong>：路径的<strong>宽度和角度</strong>保持一致。<strong>狭窄而陡峭</strong>的方法看起来并不诱人，而且<strong>不明显</strong>。</li>
+<li><strong>照明/ FX</strong>：<strong>突出隧道或梯子</strong>的“神秘射线”或<strong>氛围光</strong>。</li>
+<li><strong>小兵</strong>：生成一些<strong>不致命的小兵以此吸引玩家的注意力</strong>。</li>
+</ul>
+<p><strong>再也不要出现管道(通道状)！</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003323.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003323.png" srcset="data:image/png;base64,666"></p>
+<p><strong>最常见且最容易生产</strong>的是带有<strong>奇怪的掩体的平面布局</strong>。作为早期的<strong>训练关</strong>卡，这些可能勉强OK，但是在整个游戏的过程中，再次穿过它们时将会感到非常无聊，因为我们曾经“去过那里”。所以实际上我们面临的挑战是<strong>创建一种布局，并利用整个3D世界为玩家提供从各种角度和方向去射击的</strong>这一事实。</p>
+<h2 id="掩体"><a href="#掩体" class="headerlink" title="掩体"></a>掩体</h2><p>显而易见，<strong>掩体是射手关键组成的一部分</strong>。但是，在您将其视作<strong>仅在装饰关卡</strong>时“发生”的事情之前，请确保您<strong>了解什么类型以及放置方式</strong>如何<strong>直接影响玩家</strong>的体验。</p>
+<p><strong>虚构之物与故事性-非传统的掩体</strong></p>
+<p><img src="https://www.gamasutra.com/db_area/images/feature/4080/ev4.jpg" class="lazyload" data-srcset="https://www.gamasutra.com/db_area/images/feature/4080/ev4.jpg" srcset="data:image/png;base64,666" alt="img"></p>
+<p>F @ ＃$＃!! @ G 板条箱！？！？！？</p>
+<p>重复的板条箱是一个很好的迹象，表明团队用尽了所有的想法。如果具有<strong>故事性支持</strong>的话，它们就可以工作（板条箱仓库！），但<strong>应避免使用</strong>。理想的情况下，<strong>出色的掩体不会脱颖而出</strong>：</p>
+<p>“嘿，看着我！当你击中那看不见的扳机时，我就是这场战斗的象征物！”</p>
+<p>通过在整个关卡中<strong>使用相同外观</strong>，<strong>大小和形状</strong>的<strong>掩体对象</strong>，玩家开始看到的将是游戏而不是世界。玩家可以看到<strong>战斗区域即将来临</strong>。当<strong>掩体与该区域的虚构之物不完全匹配</strong>时，尤其令人讨厌的……就像丛林中突然出现的箱子一样。</p>
+<p><strong>一切设计都必须有意义</strong>。在<strong>设计作战区域</strong>时，至关重要的是<strong>使用该区域的虚构内容</strong>来激发联想，我们<strong>将在游戏的地面上放置哪些物体</strong>，以及<strong>如何将其用作掩体</strong>。这需要成为餐巾草稿纸计划中的一部分，因为它与<strong>玩家所在的环境是共生</strong>的。</p>
+<hr>
+<p><strong>侧翼(Flank)！</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003411.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003411.png" srcset="data:image/png;base64,666"></p>
+<p>玩家希望自己像一个笨蛋，可以赢过“愚蠢的游戏”。通过在<em>击杀区域</em>和<em>防御区域(掩体)<em>的</em></em>两侧赋予玩家超越AI的能力<strong>是关键。</strong>计划使玩家能够获得像英雄般战胜敌人的那种感觉所带来的振作。**</p>
+<p>上图显示了玩家可以在<strong>示例布局中侧击敌人</strong>的几种方式。</p>
+<p><strong>与难度的关系</strong></p>
+<p>掩体对于<strong>控制战斗区域的难度</strong>至关重要，考虑关卡中<strong>强度和难度</strong>带来的不同<strong>控制</strong>，<strong>您的战斗区域</strong>应反映出这一点。</p>
+<p>通过<strong>考虑以下因素来控制掩体难度</strong>：</p>
+<ul>
+<li><strong>数量</strong>：<strong>更多的掩体</strong>意味着对敌人火力压制的<strong>更多保护</strong>，以及<strong>更多的机会</strong>来<strong>躲避和击杀</strong>敌人。较少的结果会**导致更大且更致命的击杀区域(可能会产生大量直击和受伤)**，从而增加了挑战。</li>
+<li><strong>间距</strong>：<strong>玩家的速度是间距的关键</strong>，因此请确保您精通我们的<em>度量指标</em>。<strong>掩体的距离比玩家可以冲刺的距离要大</strong>，这会导致在<strong>“击杀区域”</strong>进行<strong>危险的奔跑</strong>。允许连<strong>接玩家在掩体间的跳跃</strong>有助于**”忍者”层玩家**的路径。</li>
+<li><strong>大小和高度</strong>：<strong>大而宽提供了足够的掩盖范围</strong>，而<strong>一棵狭窄的树</strong>容易使玩家<strong>暴露于多道的火线之中</strong>。强迫玩家<strong>蹲在树桩后面</strong>比<strong>仅在墙壁后面跑步和站立要困难</strong>得多。</li>
+<li><strong>密度</strong>：一簇小树<strong>会破坏和影响视线</strong>，但<strong>不会影响到开火</strong>。</li>
+<li><strong>临时的</strong>：<strong>可破坏的掩体</strong>不会导致<strong>永久的掩体</strong>，它将被摧毁并<strong>将玩家暴露在击杀区域</strong>中。</li>
+</ul>
+<p>根据您对<strong>强度和难度的控制</strong>，<strong>巧妙地</strong>利用以上所述，以便使您的战斗区域以各种深思熟虑的方式带给玩家挑战。</p>
+<h2 id="分层和垂直度"><a href="#分层和垂直度" class="headerlink" title="分层和垂直度"></a><strong>分层和垂直度</strong></h2><p><strong>分层</strong>是指<strong>具有多层堆叠的游戏表面</strong>。<strong>分层战斗区</strong>对于<strong>支持上述游戏风格至关重要</strong>。需要在餐巾草稿图中<strong>规划不同层级</strong>，因为<strong>环境需要证明其合理性</strong>。在<strong>丛林中的时装表演</strong>，<strong>有人会信吗</strong>？</p>
+<p>下图是分层战斗区域的示例。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003446.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003446.png" srcset="data:image/png;base64,666"></p>
+<p><strong>垂直度</strong>是指<strong>垂直或水平构建的战斗区域</strong>。挑战<strong>集中在垂直的移动空间</strong>上，因此会侧重于<strong>攀爬/跳跃</strong>，这使得<strong>挑战将集中在所穿越的空间</strong>上。再加上战斗，就会大大增加难度。</p>
+<h2 id="战斗区域的布局"><a href="#战斗区域的布局" class="headerlink" title="战斗区域的布局"></a><strong>战斗区域的布局</strong></h2><p>战斗区域的布局主要有两种类型：<strong>一种具有非常狭窄的布局</strong>，被称为”阻塞点”，在布局中，玩家必须<strong>越过并克服致命的死亡区域</strong>，被我称之为“界限”。请注意下面的图片，<strong>它具有几条在同一阻塞点上的路径</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003512.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003512.png" srcset="data:image/png;base64,666"></p>
+<p>第二种布局类型被称为“<strong>自由形式”</strong>，它的”阻塞点”是不明确和模糊的。最终体验会更加<strong>“松散”</strong>，根据<strong>玩家所采用的战术和方法</strong>，死亡区域将<strong>可能在各个区域中的某处</strong>聚集从而产生，这给了玩家更大的<strong>自由度和随机性</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/ev8.jpg" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/ev8.jpg" srcset="data:image/png;base64,666"></p>
+<p><strong>相互转换</strong></p>
+<p>是否有可能设计一个以<strong>自由形式</strong>的布局开始，随后某处被定义为”阻塞点”的作战区域，反之亦然？转换可能是<strong>令人兴奋的组成部分</strong>，并且<strong>将为您带来难忘的战斗</strong>。</p>
+<hr>
+<h2 id="功能化设计"><a href="#功能化设计" class="headerlink" title="功能化设计"></a><strong>功能化设计</strong></h2><p>为什么在<strong>丛林</strong>中间会有一个<strong>箱子</strong>？</p>
+<p>该地区的所有事物都<strong>需要证明其合理性</strong>，以<strong>符合世界观的虚构</strong>。研究并收集参考资料，为您的<strong>布局设计奠定基础</strong>。考虑到：</p>
+<ul>
+<li>该区域在整个世界地图上的什么位置？</li>
+<li>是旧的还是新的？</li>
+<li>为什么这些物体在这里？</li>
+<li>是否有水路（溪流/河床/河床干涸）</li>
+<li>该区域是否已清理或自然密集？</li>
+<li>树木被砍倒了吗？</li>
+<li>人们如何进出该地区？</li>
+</ul>
+<p>为了<strong>中止怀疑不断加剧的程度</strong>，<strong>布局应该合理</strong>。有几种方法可以支持这一点：</p>
+<ul>
+<li><strong>功能性</strong>：与<strong>随机放置物体和结构</strong>以<strong>满足有效的战斗区域</strong>的需求相反，请记住，<strong>布局在技术上必须具有功能性并最终令人信服</strong>。例如，如果它是某种类型的<strong>存储仓库</strong>，那么<strong>如何装卸物品</strong>？一切都<strong>可以穿过门口</strong>吗？</li>
+<li><strong>历史</strong>：该区域存在多长时间了？如果是旧的，<strong>布局是否反映了这一点</strong>（<strong>损坏/混乱</strong>）？<strong>思考布局的历史</strong>有助于<strong>提供有关结构及其状态的想法</strong>。如果这是一个<strong>古老的地区</strong>，您能走进前门吗？长满了吗？坏了吗 也许<strong>通过围墙的塌陷部分</strong>进入的另一种方式会更<strong>适合布局的年代</strong>。</li>
+<li><strong>小故事(增加故事性)：</strong>没有什么比<strong>敌人</strong>更能<strong>打破这种幻觉</strong>了，他们正在<strong>无意识地巡逻明显的环形物体</strong>，<strong>或者站着无所事事</strong>（译者：等死？）他们的<strong>作用是什么</strong>？当您进入该区域时，他们<strong>应该做什么</strong>？如果他们刚到，他们<strong>是否要建立营地并卸货呢</strong>？如果他们在那里呆了一段时间，他们<strong>将如何打发时间</strong>？</li>
+</ul>
+<p>这个想法是<strong>要创造一个可信的环境</strong>，它不是<strong>严格地用于创建有效战斗区域的对象的随机组合</strong>。</p>
+<h2 id="控制挑战"><a href="#控制挑战" class="headerlink" title="控制挑战"></a><strong>控制挑战</strong></h2><p><strong>移动的击杀区域</strong></p>
+<p>当玩家习惯了“<strong>击杀区域</strong>”的概念时，如果每个“<strong>战斗区域</strong>”都像上一个一样<strong>可预测且静止</strong>，那么<strong>游戏的玩法仍然存在陈旧的风险</strong>，如果玩家**在整个战斗过程中只是从防御区域(掩体)**中“跳出并射击”时，这一观点尤其正确。</p>
+<p>设计者<strong>改变击杀的角度和位置</strong>，会<strong>迫使玩家找到新的防御区域(掩体)**。这有助于</strong>通过令人信服的智能AI创造动态世界**的印象。</p>
+<p>可以实现的方式：</p>
+<ul>
+<li>登台<strong>值班交替位置</strong>，<strong>增援部队进入战斗区域</strong>，这样玩家<strong>就不会从相同的角度逐个击落敌人</strong>。</li>
+<li>请注意，这应该是<strong>向玩家呈现的事件</strong>。</li>
+<li><strong>可破坏元素</strong>改变了比赛的场地；如果它是能让玩家意识到的游戏对象，那就很好。</li>
+<li>AI“后退”和“冲锋”；<strong>杀戮区域</strong>在战斗区域内<strong>来回移动</strong>，具体<strong>取决于玩家是否在减少他们的存活数量</strong>（AI后退），或者<strong>是否有一段时间出现了对峙</strong>（AI冲锋）</li>
+</ul>
+<p><strong>风险与回报</strong></p>
+<p>让<strong>玩家感到有力量</strong>没有错，<strong>即使是很短的时间内</strong>。<strong>被狩猎者在短时间内成为猎手</strong>，与吃豆人吃强力药丸不同。</p>
+<p>在<strong>布局中</strong>，<strong>考虑物体/物品的放置</strong>，这将在<strong>战斗中为玩家带来巨大的优势</strong>。例如：一个在杀戮区域中，<strong>突出显示一些镜头</strong>(藏有道具和宝贝)里的<strong>RPG</strong>；然后，玩家可以<strong>选择留在原处并安全地进行游戏</strong>，或者<strong>尝试冒着生命危险</strong>冲刺并跳入其中获取<strong>RPG</strong>。</p>
+<h2 id="扩展游戏性"><a href="#扩展游戏性" class="headerlink" title="扩展游戏性"></a><strong>扩展游戏性</strong></h2><p>最后但最重要的是，计划以<strong>彼此脱颖而出的方式来布置战斗区</strong>。关卡设计师<strong>面临的挑战</strong>是，在<strong>10个小时以上的体验过程</strong>中，不断的去反复提供端到端的，可能持续不到30秒的相同游戏玩法。</p>
+<p>即使理解了什么是<strong>支持一场有趣和引人入胜的战斗体验所需要的内容</strong>，但仍需要进一步的努力为<strong>核心战斗体验增加多样性</strong>，以此<strong>扩展玩家的感受</strong></p>
+<p><strong>添加扭曲-独特的演出</strong></p>
+<p>考虑<strong>构成核心机制</strong>并<strong>挑战一个或多个玩家的元素</strong>。玩家可以：</p>
+<ul>
+<li><strong>看到</strong></li>
+<li><strong>移动</strong></li>
+<li><strong>射击</strong></li>
+<li><strong>掩护</strong></li>
+<li><strong>听到</strong></li>
+<li><strong>受伤</strong></li>
+</ul>
+<p>通过给玩家一个<strong>正面的奖励</strong>，或者一个<strong>负面的奖励</strong>，可以帮助<strong>创造一个令人难忘的体验</strong>。</p>
+<p>考虑到这一点，<strong>负面反馈</strong>可能是<strong>充满浓烟的区域</strong>，从而<strong>限制了玩家的视线，</strong>或者大量恐龙的蜂拥<strong>会造成伤害并减缓玩家的移动速度</strong>。</p>
+<p><strong>积极的额外待遇</strong>也会给玩家带来<strong>令人难忘的战斗体验</strong>。当玩家遇到<strong>一大堆爆炸物</strong>时，他<strong>突然被一大群恐龙袭击了</strong>，这时玩家<strong>有机会引燃炸药并发出嘘声，直到心满意足</strong>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>一切都始于餐巾纸上的草图，<strong>尽早计划这些关键的要素</strong>。</p>
+<p>质问自己：<strong>“这场与众不同的战斗，最终玩家会给玩家留下什么样的体验和印象呢？”</strong></p>
+<p>编辑于 2019-11-11</p>
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-06-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/LevelDesign/">LevelDesign</a>
-        
-      </div>
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/'>
-            阅读全文
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://katanaproduction.cn/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/>https://katanaproduction.cn/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/</a></p>
+              
+            
+          </blockquote>
         </div>
       
+      
     </div>
   
+  
+    
 
-</div>
 
-          </div>
-        
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-    <div class='headimg-div'>
-      <a class='headimg-a' href="/2021/03/02/%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85%EF%BC%9A%E4%B8%89%E7%82%B9%E7%85%A7%E6%98%8E%E6%B3%95%E6%95%99%E7%A8%8B/">
-        <img class='headimg' src='https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210302003440.png'/>
-      </a>
-    </div>
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/02/%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85%EF%BC%9A%E4%B8%89%E7%82%B9%E7%85%A7%E6%98%8E%E6%B3%95%E6%95%99%E7%A8%8B/">
-        知识补充：三点照明法教程
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <blockquote>
-<p><em>在这篇文章中，我将重点介绍角色照明，因为角色照明通常使用了三点照明法，并且其中往往会使用一些非常不同的方法。</em></p>
-</blockquote>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-17T00:58:41+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年6月17日</p>
+  </a>
+</div>
+
+        
+      
         
           
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-03-02</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Art/">Art</a><span class="sep"></span><a class="category-link" href="/categories/Art/Lighting/">Lighting</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/02/%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85%EF%BC%9A%E4%B8%89%E7%82%B9%E7%85%A7%E6%98%8E%E6%B3%95%E6%95%99%E7%A8%8B/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
   
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/LevelDesign/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>LevelDesign</p></a></div>
 
-</div>
 
-          </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-    <div class='headimg-div'>
-      <a class='headimg-a' href="/2021/03/02/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC5%E9%83%A8%E5%88%86%EF%BC%9A%E7%A1%AC%E9%98%B4%E5%BD%B1(Hard%20Shadow)%E7%9A%84%E5%85%B4%E4%B8%8E%E8%A1%B0/">
-        <img class='headimg' src='https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210301235941.png'/>
-      </a>
-    </div>
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/02/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC5%E9%83%A8%E5%88%86%EF%BC%9A%E7%A1%AC%E9%98%B4%E5%BD%B1(Hard%20Shadow)%E7%9A%84%E5%85%B4%E4%B8%8E%E8%A1%B0/">
-        3D游戏照明设计理论-第5部分：硬阴影(Hard Shadow)的兴与衰
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <blockquote>
-<p><em>这是关于理解视频游戏照明理论方法的系列文章的<a target="_blank" rel="noopener" href="https://www.blog.radiator.debacle.us/search/label/lighting">一部分</a>（原文及相关研究文章参照此链接），同时又以现实中的开发技术为基础，而非专注于特定的游戏引擎。</em></p>
-</blockquote>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
         
           
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-03-02</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/LevelDesign/">LevelDesign</a><span class="sep"></span><a class="category-link" href="/categories/LevelDesign/LightingDesign/">LightingDesign</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/02/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC5%E9%83%A8%E5%88%86%EF%BC%9A%E7%A1%AC%E9%98%B4%E5%BD%B1(Hard%20Shadow)%E7%9A%84%E5%85%B4%E4%B8%8E%E8%A1%B0/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-    <div class='headimg-div'>
-      <a class='headimg-a' href="/2021/03/01/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC4%E9%83%A8%E5%88%86%EF%BC%9A%E5%A6%82%E4%BD%95%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E4%B8%AD%E7%85%A7%E4%BA%AE%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C/">
-        <img class='headimg' src='https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210301233919.png'/>
-      </a>
-    </div>
-  
-  
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
-    <h2 class="article-title" >
-      <a href="/2021/03/01/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC4%E9%83%A8%E5%88%86%EF%BC%9A%E5%A6%82%E4%BD%95%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E4%B8%AD%E7%85%A7%E4%BA%AE%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C/">
-        3D游戏照明设计理论-第4部分：如何在游戏引擎中照亮游戏世界
-      </a>
-    </h2>
-  
-  <div class='md'>
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://katanaproduction.cn/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/&title=战斗区域剖析 - Katana Production&summary=
+[在这份详细的设计文章中，蓝色城堡（Dead Rising 2）的关卡设计总监乔什·布里奇（Josh Bridge）研究了如何为第一人称/第三人称射击游戏设计令人难忘的战术战斗区域]
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
     
-      <blockquote>
-<p><em>这是有关如何处理游戏照明系列文章的第四部分。我在Unity中构建了大部分示例，这通常适用于任何3D游戏引擎，其中大多数都具有类似的照明工具。</em></p>
-</blockquote>
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://katanaproduction.cn/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/&title=战斗区域剖析 - Katana Production&summary=
+[在这份详细的设计文章中，蓝色城堡（Dead Rising 2）的关卡设计总监乔什·布里奇（Josh Bridge）研究了如何为第一人称/第三人称射击游戏设计令人难忘的战术战斗区域]
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://katanaproduction.cn/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/&title=战斗区域剖析 - Katana Production&summary=
+[在这份详细的设计文章中，蓝色城堡（Dead Rising 2）的关卡设计总监乔什·布里奇（Josh Bridge）研究了如何为第一人称/第三人称射击游戏设计令人难忘的战术战斗区域]
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-03-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/LevelDesign/">LevelDesign</a><span class="sep"></span><a class="category-link" href="/categories/LevelDesign/LightingDesign/">LightingDesign</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/01/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC4%E9%83%A8%E5%88%86%EF%BC%9A%E5%A6%82%E4%BD%95%E5%9C%A8%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E4%B8%AD%E7%85%A7%E4%BA%AE%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-    <div class='headimg-div'>
-      <a class='headimg-a' href="/2021/03/01/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC3%E9%83%A8%E5%88%86%EF%BC%9A%E4%B8%89%E7%82%B9%E7%85%A7%E6%98%8E%E6%B3%95%E7%9A%84%E5%BC%8A%E7%AB%AF%E5%92%8C%E8%AF%AF%E5%8C%BA/">
-        <img class='headimg' src='https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210301230821.png'/>
-      </a>
     </div>
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/01/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC3%E9%83%A8%E5%88%86%EF%BC%9A%E4%B8%89%E7%82%B9%E7%85%A7%E6%98%8E%E6%B3%95%E7%9A%84%E5%BC%8A%E7%AB%AF%E5%92%8C%E8%AF%AF%E5%8C%BA/">
-        3D游戏照明设计理论-第3部分：三点照明法的弊端和误区
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <blockquote>
-<p><em>这是有关如何处理游戏照明系列文章的第三部分。第一部分关于灯具，第二部分关于灯光和其功能。</em></p>
-</blockquote>
-    
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-03-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/LevelDesign/">LevelDesign</a><span class="sep"></span><a class="category-link" href="/categories/LevelDesign/LightingDesign/">LightingDesign</a>
-        
-      </div>
+  
+
+  
+    <div class="prev-next">
       
-        <div>
-          <a class='readmore' href='/2021/03/01/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC3%E9%83%A8%E5%88%86%EF%BC%9A%E4%B8%89%E7%82%B9%E7%85%A7%E6%98%8E%E6%B3%95%E7%9A%84%E5%BC%8A%E7%AB%AF%E5%92%8C%E8%AF%AF%E5%8C%BA/'>
-            阅读全文
-          </a>
-        </div>
+      
+        <a class='next' href='/2021/03/02/%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85%EF%BC%9A%E4%B8%89%E7%82%B9%E7%85%A7%E6%98%8E%E6%B3%95%E6%95%99%E7%A8%8B/'>
+          <p class='title'>知识补充：三点照明法教程<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+在这篇文章中，我将重点介绍角色照明，因为角色照明通常使用了三点照明法，并且其中往往会使用一些非常不同的方法。
+
+
+
+本文转自lightingpixels网站中的作者Edu Martin Jul...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-    <div class='headimg-div'>
-      <a class='headimg-a' href="/2021/03/01/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC2%E9%83%A8%E5%88%86%EF%BC%9A%E6%AD%A3%E7%A1%AE%E7%9A%84%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%EF%BC%8C%E9%80%9A%E8%BF%87%E7%81%AF%E5%85%89%E4%BD%9C%E4%B8%BA%E7%94%BB%E9%9D%A2%E6%B7%B1%E5%BA%A6/">
-        <img class='headimg' src='https://2.bp.blogspot.com/-h2T06HR0FuU/VQsRTjcojUI/AAAAAAAAEO0/atfjPlKu5dY/s1600/light_interior.jpg'/>
-      </a>
-    </div>
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/01/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC2%E9%83%A8%E5%88%86%EF%BC%9A%E6%AD%A3%E7%A1%AE%E7%9A%84%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%EF%BC%8C%E9%80%9A%E8%BF%87%E7%81%AF%E5%85%89%E4%BD%9C%E4%B8%BA%E7%94%BB%E9%9D%A2%E6%B7%B1%E5%BA%A6/">
-        3D游戏照明设计理论-第2部分：正确的照明设计方法，通过灯光作为画面深度
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <blockquote>
-<p><em>从理论的角度来看，这是我平日在游戏和游戏世界中进行照明设计的方法，第2部分主要内容是用于关卡设计中的灯光和其功能。</em></p>
-</blockquote>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-03-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/LevelDesign/">LevelDesign</a><span class="sep"></span><a class="category-link" href="/categories/LevelDesign/LightingDesign/">LightingDesign</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/01/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC2%E9%83%A8%E5%88%86%EF%BC%9A%E6%AD%A3%E7%A1%AE%E7%9A%84%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%EF%BC%8C%E9%80%9A%E8%BF%87%E7%81%AF%E5%85%89%E4%BD%9C%E4%B8%BA%E7%94%BB%E9%9D%A2%E6%B7%B1%E5%BA%A6/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-    <div class='headimg-div'>
-      <a class='headimg-a' href="/2021/03/01/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC1%E9%83%A8%E5%88%86%EF%BC%9A%E5%85%89%E6%BA%90%E5%92%8C%E5%9B%BA%E5%AE%9A%E8%A3%85%E7%BD%AE/">
-        <img class='headimg' src='https://1.bp.blogspot.com/-0ov83bcvsGk/VLbEu0Unf7I/AAAAAAAAD5U/Z0odSelQQF4/s1600/light_libeskind.jpg'/>
-      </a>
-    </div>
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/01/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC1%E9%83%A8%E5%88%86%EF%BC%9A%E5%85%89%E6%BA%90%E5%92%8C%E5%9B%BA%E5%AE%9A%E8%A3%85%E7%BD%AE/">
-        3D游戏照明设计理论-第1部分：光源和固定装置
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <blockquote>
-<p><em>从理论的角度来看，这是我平日在游戏和游戏世界中进行照明设计的方法，第一部分是关于照明设计的通用概念。</em></p>
-</blockquote>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-03-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/LevelDesign/">LevelDesign</a><span class="sep"></span><a class="category-link" href="/categories/LevelDesign/LightingDesign/">LightingDesign</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/01/3D%E6%B8%B8%E6%88%8F%E7%85%A7%E6%98%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA-%E7%AC%AC1%E9%83%A8%E5%88%86%EF%BC%9A%E5%85%89%E6%BA%90%E5%92%8C%E5%9B%BA%E5%AE%9A%E8%A3%85%E7%BD%AE/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/01/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day5/">
-        Houdini Vex编程之路——初学篇 Day5
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>今日的内容</p>
-<ol>
-<li><strong>模数的用途</strong></li>
-<li><strong>通过量化逐步令物体平滑</strong></li>
-<li><strong>通过Chramp伪装截断效果</strong></li>
-<li><strong>练习题</strong></li>
-</ol>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-03-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/TechArt/">TechArt</a><span class="sep"></span><a class="category-link" href="/categories/TechArt/Houdini/">Houdini</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/01/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day5/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/28/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1-%E7%8E%B0%E4%BB%A3%E5%BB%BA%E7%AD%91%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%9A%20%E5%88%9B%E5%BB%BA%E5%85%B7%E6%9C%89%E8%A7%86%E8%A7%89%E5%90%B8%E5%BC%95%E5%8A%9B%E7%9A%84%E5%BB%BA%E7%AD%91%E6%8C%87%E5%8D%97/">
-        关卡设计-现代建筑小技巧： 创建具有视觉吸引力的建筑指南
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <blockquote>
-<p>这不是一篇教程，而是一篇指南，它可能会或不会对建筑物的创建有所帮助，具体将取决于你要实现的样式。在这里，我将详细介绍现实世界中的建筑物，并说明某些建筑物之所以具有吸引力的原因。</p>
-</blockquote>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-02-28</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/LevelDesign/">LevelDesign</a><span class="sep"></span><a class="category-link" href="/categories/LevelDesign/ArchitectDesign/">ArchitectDesign</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/28/%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1-%E7%8E%B0%E4%BB%A3%E5%BB%BA%E7%AD%91%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%9A%20%E5%88%9B%E5%BB%BA%E5%85%B7%E6%9C%89%E8%A7%86%E8%A7%89%E5%90%B8%E5%BC%95%E5%8A%9B%E7%9A%84%E5%BB%BA%E7%AD%91%E6%8C%87%E5%8D%97/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day4/">
-        Houdini Vex编程之路——初学篇 Day4
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <h3 id="Chramp"><a href="#Chramp" class="headerlink" title="Chramp"></a>Chramp</h3><p>Chramp可以是一种更直接，更直观的方式来调整参数。如果你在Photoshop中使用过曲线工具，将会很直观，否则我将需要一些gif图像来作两者的表示:)</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-02-28</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/TechArt/">TechArt</a><span class="sep"></span><a class="category-link" href="/categories/TechArt/Houdini/">Houdini</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day4/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-        <p class="current">
-          1 / 2
-        </p>
-        
-          <a class="next" rel="next" href="/archives/2021/page/2/">
-            <section class="post next white-box shadow">
-              &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
-    
-  
+  </article>
 
 
-	
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -982,146 +763,28 @@
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>Katana</h2>
-        
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:781217732@qq.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/qq781217732/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Art/" href="/categories/Art/"
-            id="categoriesArt"
-            ><div class='name'>Art</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/Art/Lighting/" href="/categories/Art/Lighting/"
-            id="categoriesArtLighting"
-            ><div class='name'>Lighting</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/LevelDesign/" href="/categories/LevelDesign/"
-            id="categoriesLevelDesign"
-            ><div class='name'>LevelDesign</div><div class='badge'>(7)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/LevelDesign/ArchitectDesign/" href="/categories/LevelDesign/ArchitectDesign/"
-            id="categoriesLevelDesignArchitectDesign"
-            ><div class='name'>ArchitectDesign</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/LevelDesign/LightingDesign/" href="/categories/LevelDesign/LightingDesign/"
-            id="categoriesLevelDesignLightingDesign"
-            ><div class='name'>LightingDesign</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/TechArt/" href="/categories/TechArt/"
-            id="categoriesTechArt"
-            ><div class='name'>TechArt</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/TechArt/Houdini/" href="/categories/TechArt/Houdini/"
-            id="categoriesTechArtHoudini"
-            ><div class='name'>Houdini</div><div class='badge'>(5)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E7%BA%B2"><span class="toc-text">大纲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F"><span class="toc-text">战斗区域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%A9%E5%AE%B6%E8%B7%AF%E7%BA%BF"><span class="toc-text">玩家路线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A9%E4%BD%93"><span class="toc-text">掩体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E5%92%8C%E5%9E%82%E7%9B%B4%E5%BA%A6"><span class="toc-text">分层和垂直度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E7%9A%84%E5%B8%83%E5%B1%80"><span class="toc-text">战斗区域的布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%8C%96%E8%AE%BE%E8%AE%A1"><span class="toc-text">功能化设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E6%8C%91%E6%88%98"><span class="toc-text">控制挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E6%B8%B8%E6%88%8F%E6%80%A7"><span class="toc-text">扩展游戏性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/HoudiniVex/" style="font-size: 19px; color: #777">HoudiniVex</a> <a href="/tags/LevelDesign/" style="font-size: 14px; color: #999">LevelDesign</a> <a href="/tags/LightingDesign/" style="font-size: 24px; color: #555">LightingDesign</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
 		  
@@ -1130,14 +793,14 @@
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="战斗区域剖析";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 
