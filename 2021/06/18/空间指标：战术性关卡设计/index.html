@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>空间指标：战术关卡设计 - Katana Production</title>
+  
+    <meta name="keywords" content="LevelDesign">
+  
+
+  
+    <meta name="description" content="
+什么是优秀的关卡设计？身为一名博士和教育家，麦克米兰（McMillan）与育碧（Ubisoft）合作创建了一门游戏设计课程，它研究了视野将如何影响玩家。它通过展示了一些游戏场景，表明了这些场景下，玩家将可能面临的不同战术选择。
+">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+    <link rel="shortcut icon" type='image/x-icon' href="https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/KatanaStudio-LOGO.ico">
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+
+<script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) document.write('\x3Cscript id="_iealwn_js" data-outver="11" src="https://support.dmeng.net/ie-alert-warning/latest.js">\x3C/script>'); </script>
+
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header always shadow blur show"  >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+            <img no-lazy class='logo' src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/KatanaStudio-LOGO%20(1)%20(1).png'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210301012742.png"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Katana Production</p>
+    
+    
+      <p class="subtitle">LevelDesigner&TechArt&Translator Apprentice</p>
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/v4/getting-started/"
+              
+              
+              id="v4getting-started">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg'><p>文档</p>
+            </a>
+          
+            <a href="/faqs/"
+              
+              
+              id="faqs">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg'><p>帮助</p>
+            </a>
+          
+            <a href="/examples/"
+              
+              
+              id="examples">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg'><p>示例</p>
+            </a>
+          
+            <a href="/contributors/"
+              
+              
+              id="contributors">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg'><p>社区</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+    <div class='headimg-div'>
+      <a class='headimg-a'>
+        <img class='headimg' src='https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618003003.png'/>
+      </a>
+    </div>
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        空间指标：战术关卡设计
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png">
+    <p>Katana</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/LevelDesign/">LevelDesign</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年6月18日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="空间指标：战术关卡设计" data-path="/2021/06/18/%E7%A9%BA%E9%97%B4%E6%8C%87%E6%A0%87%EF%BC%9A%E6%88%98%E6%9C%AF%E6%80%A7%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <blockquote>
+<p>什么是优秀的关卡设计？身为一名博士和教育家，麦克米兰（McMillan）与育碧（Ubisoft）合作创建了一门游戏设计课程，它研究了<strong>视野将如何影响玩家</strong>。它通过展示了一些游戏场景，表明了这些场景下，玩家将可能面临的不同战术选择。</p>
+</blockquote>
+<a id="more"></a>
+
+<p>作者：乔什·布里奇（Josh Bridge）</p>
+<p><em>什么是优秀的关卡设计？身为一名博士和教育家，麦克米兰（McMillan）与育碧（Ubisoft）合作创建了一门游戏设计课程，它研究了<strong>视野将如何影响玩家</strong>。它通过展示了一些游戏场景，表明了这些场景下，玩家将可能面临的不同战术选择。</em></p>
+<p>有多种方法可以理解，游戏中的<strong>三维空间感知</strong>是如何<strong>改变玩家的情绪状态</strong>。</p>
+<p>关卡设计中使用的一种方法是<strong>建筑透射法</strong>-玩家与他们<strong>在任何给定时间所占据的空间</strong>之间的关系。这种方法的许多实现都没有去考虑，其中所涉及到的，<strong>玩家</strong>、<strong>其他动因和环境</strong>所带来的<strong>动态关系</strong>。</p>
+<p>本文着眼于<strong>三维空间中的动态关系</strong>，以了解如何<strong>将动态对象与关卡几何体</strong>一起运用，<strong>以调整游戏难度</strong>和<strong>玩家的情绪状态</strong>。为了实现这一目标，本文将采用<strong>新颖的方法</strong>来评估现代3D(第一/第三人称) FPS游戏中<strong>玩家的战术</strong>。</p>
+<h2 id="目标："><a href="#目标：" class="headerlink" title="目标："></a>目标：</h2><ul>
+<li><p>通过更好地了解3DFPS关卡中，各种<strong>游戏难度提升的原因</strong>，从而理解<strong>如何在游戏的虚拟空间中调整游戏难度</strong>。</p>
+</li>
+<li><p>明白如何<strong>使用多种不同的方法来实现游戏难度的提升</strong>。</p>
+</li>
+</ul>
+<h2 id="空间度量-The-Metrics-of-Space"><a href="#空间度量-The-Metrics-of-Space" class="headerlink" title="空间度量(The Metrics of Space)"></a>空间度量(The Metrics of Space)</h2><p>为了对<strong>3D游戏空间的设计</strong>采取合理的方法，我们需要<strong>确定一些指标</strong>。<strong>改变难度的主要指标</strong>是<strong>玩家的视线</strong>。玩家的<strong>视线范围越大</strong>，他们就越有能力<strong>提前计划并从战术角度去思考游戏中世界。</strong></p>
+<p><strong>更大的视线范围将提供更多战术选择</strong>，玩家将有<strong>更多的计划时间</strong>和<strong>更强的对当前态势感知的能力</strong>。另一方面，<strong>降低玩家的视线</strong>将使玩家<strong>处于不利地位</strong>，因为他们将有<strong>更少态势感知</strong>和<strong>更少的时间</strong>来处理某些问题。</p>
+<p>我必须指出，这种观察主要与<strong>FPS</strong>这样的游戏类型有关。如果我们用<strong>更宽泛的措词</strong>来表述，我们可以通过<strong>引用玩家的“态势感知”得出同样的结论</strong>。但是，由于本文以关卡设计为中心，因此我们将<strong>剖析这种视线的概念</strong>。</p>
+<p>我们可以使用两个<strong>关键原理</strong>来<strong>测量视线</strong>：由<strong>几何视野</strong>（<em>GFOV-Geometric Field Of View</em>）创建的<strong>角度</strong>以及<strong>图形分辨率的保真度</strong>，这将告诉我们<strong>玩家可以准确看到的距离</strong>。（图1）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617231317.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617231317.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图1</strong></p>
+<h2 id="几何视野和显示视野-Geometric-Field-of-View-amp-Display-Field-of-View"><a href="#几何视野和显示视野-Geometric-Field-of-View-amp-Display-Field-of-View" class="headerlink" title="几何视野和显示视野(Geometric Field of View &amp; Display Field of View)"></a>几何视野和显示视野(Geometric Field of View &amp; Display Field of View)</h2><p>在处理三维空间的渲染时，我们主要关注<strong>几何视野</strong>（图2）。<strong>GFOV</strong>是最常被讨论的<strong>视野度量类型</strong>，因为该视野是<strong>玩家镜头</strong>的视野。<strong>宽度</strong>被用来表示为<strong>测量视锥水平跨度的角度</strong>。<strong>远裁剪平面</strong>(far clipping plane)是游戏引擎<strong>停止渲染的位置</strong>。我们有时听到这被称为“<strong>画面距离/绘制距离</strong>“(draw distance)。复杂的渲染系统将在<strong>“角分”</strong>(arc minutes)内来表示<strong>视觉敏锐度</strong>这一元素。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617231740.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617231740.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图2</strong></p>
+<p>相对而言，较少被讨论的则是<strong>显示视野</strong>或<strong>DFOV</strong>（图3）的概念。这是由玩家与玩游戏时<strong>正在使用的显示器的距离</strong>和<strong>他们的显示器的尺寸</strong>所决定的<strong>视野</strong>。有趣的是，DFOV在3D<strong>空间的导航和后续的难度</strong>中扮演着极其重要的角色，但也<strong>仅适用于女性玩家</strong>。</p>
+<p>Tan，Czerwinski和Robertson（2006）进行的研究表明，当DFOV和GFOV<strong>角度为1：1</strong>的<strong>关系时</strong>，<strong>女性玩家的收益最大</strong>。值得关注的是，<strong>当这种关系发生改变时</strong>，男性玩家在<strong>三维空间导航上</strong>所<strong>受到的影响</strong>似乎<strong>要小得多</strong>，即使是<strong>显著改变</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617231954.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617231954.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图3</strong></p>
+<h2 id="入口-amp-遮挡物和视线-Portals-amp-Occluders-and-Line-of-Sight"><a href="#入口-amp-遮挡物和视线-Portals-amp-Occluders-and-Line-of-Sight" class="headerlink" title="入口&amp;遮挡物和视线(Portals &amp; Occluders, and Line of Sight)"></a>入口&amp;遮挡物和视线(Portals &amp; Occluders, and Line of Sight)</h2><p>入口(Portals)是能够提供超乎寻常视线的游戏设施。我们可以将围绕工厂关卡上层的龙门架视为一种入口，这样玩家可以拥有宽敞的空间去查看其下方楼层（图4）。这就是为何我们经常会看到，玩家在战术预测上选择占据“制高点”的原因，因为与玩家<strong>停留在地图的较低区域</strong>相比，<strong>提升高度</strong>可以使玩家<strong>获得更大的态势感知</strong>。<strong>窗户和门</strong>也因此构成了游戏关卡中的入口。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617233017.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617233017.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图4</strong></p>
+<p>游戏中，任何一种允许玩家对其<strong>视线进行更多控制</strong>的武器，都会非常强大。这也就导致了，像狙击步枪这样<strong>具有强大视线能力</strong>的武器，<strong>具有极高威力</strong>。但是，这些强大能力，<strong>通常会以某种形式受到削弱</strong>。例如，狙击步枪虽然为玩家提供了更多视线，但是它会<strong>降低玩家的GFOV</strong>（图5）。或者像《<em>虚幻竞技场》中</em>使用的自动导航火箭那样，玩家<strong>在使用时容易受到攻击</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617233712.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617233712.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图5</strong></p>
+<p><strong>遮挡物/遮挡装置</strong>(Occluders)还可以改变<strong>图像的准确性</strong>，并随后限制<strong>外围视野</strong>或者是玩家的<strong>视线距离</strong>。《<em>毁灭战士3》中</em>使用的<strong>手电筒</strong>，是<strong>完成这两种功能</strong>的<strong>遮挡装置的最佳示例之一</strong>（图6）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617234030.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617234030.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图6</strong></p>
+<p>从<strong>空间的角度</strong>来看，手电筒的运用非常有趣，因为它使<strong>狭隘拥挤的空间</strong>看起来像是<strong>人为地变大了</strong>，并且<strong>鼓励玩家探索房间或关卡</strong>的某些部分，而如果是<strong>完整照明</strong>的话，玩家则不会这样做。从表面上来看，《<em>毁灭战士3</em>》的关卡与该系列的早期游戏相比，<strong>具有非常线性的设计</strong>。但是，玩家会在<strong>较小的空间中停留更长时间</strong>，因为灯光的<strong>遮挡</strong>，意味着他们需要<strong>花费更多时间</strong>来获取每个房间的<strong>态势感知</strong>。</p>
+<p>///译者：参考生化危机7和8里屏幕四周的暗角，以及魂系游戏区域探索时的自身光源。</p>
+<p>《<em>寂静岭2》</em>（图7）中所使用的“<strong>干扰雾”</strong>(<em>Noise</em>)，也是一种<strong>遮挡装置</strong>，它被用于<strong>减少玩家视线</strong>，并使其<strong>更加谨慎</strong>。同样需要注意的是，这些效果，<strong>通常也起着重要的技术作用，因为它们降低了大型开阔环境中所需的绘制距离</strong>，同时也给人一种<strong>环境比例变大的幻觉</strong>。我们会经常看到，<strong>模拟天气</strong>带来的影响，例如<strong>雨水，雾和雪花</strong>等用于<strong>达成类似目标</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617235048.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617235048.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图7</strong></p>
+<p>在游戏环境中，关卡设计师可以运用入口(Portals)和遮挡物(Occluders)的原理，来调整游戏虚拟空间的难度。图8展示了是否使用封闭式通道设计的难度差异。在左边的示例中，玩家可以从墙壁上获取视野，从而大大提高了态势感知的能力。这意味着，在与任何敌人交战时，他们将会更加领先。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617235645.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617235645.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图8</strong></p>
+<p>在右侧示例中，<strong>遮挡</strong>被用于<strong>限制玩家的态势感知</strong>。这样，玩家<strong>在探索新的空间时</strong>会<strong>感到焦虑</strong>，因为他们需要<strong>快速熟悉空间的布局</strong>，以便他们可以更加策略地进行规划。尽管在这些机制中，有许多<strong>心理学上的结果</strong>，但在本文上下文中，我们将主要讨论<strong>遮挡物和入口</strong>，它们的功能是，在三维空间中进行难度提升。</p>
+<h2 id="次要指标：移动能力和移动可能性"><a href="#次要指标：移动能力和移动可能性" class="headerlink" title="次要指标：移动能力和移动可能性"></a><strong>次要指标：移动能力和移动可能性</strong></h2><p>在合理地处理<strong>三维空间设计</strong>时，设计人员需要意识到，应该<strong>如何控制其空间布局</strong>，促使在三维空间中的移动，或多或少<strong>变得困难</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618000817.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618000817.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图9</strong></p>
+<p>例如<strong>关卡几何体</strong>形状的<strong>大小变化</strong>，应该以，能够让玩家可观察到<strong>其所在环境中对比</strong>的方式去使用。</p>
+<p>对<strong>空间运用</strong>进行分析时，则需要添加主要指标，<strong>视线</strong>。</p>
+<p>即使<strong>较大尺寸的空间</strong>可能会为玩家<strong>提供更多的机会</strong>，但<strong>有限的视线</strong>，将覆盖该<strong>空间所带来的任何优势</strong>，这就好比<em>《毁灭战士3》</em>中的<strong>手电筒</strong>。（图9）</p>
+<p>或者说，当<strong>玩家的视锥</strong>与<strong>虚拟空间</strong>相比<strong>足够大</strong>时，他们将获得最大的<strong>局势控制权</strong>（图10）。思索这两个<strong>元素的组合</strong>的一种<strong>简单方法</strong>是，通过<strong>玩家的视锥</strong>来过滤<strong>游戏空间的大小</strong>。因此，就<strong>难度指标的层次结构</strong>而言，虚拟世界永远是<strong>次要的</strong>，因为其最终会通过<strong>摄像头(Camera)系统</strong>来传达给玩家。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618001858.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618001858.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图10</strong></p>
+<h2 id="接近矢量-Approach-vectors"><a href="#接近矢量-Approach-vectors" class="headerlink" title="接近矢量(Approach vectors)"></a>接近矢量(Approach vectors)</h2><p><strong>虚拟空间</strong>是玩家在<strong>移动可能性</strong>和<strong>伏击可能性</strong>之间的<strong>权衡</strong>。理解这种权衡和折衷的最简单的方法是，考虑<strong>视线</strong>，<strong>虚拟空间</strong>和<strong>敌方接近矢量</strong>之间的关系。</p>
+<p>有三种方法可以<strong>理解接近矢量如何影响游戏的难度</strong>。<strong>接近矢量</strong>的难度<strong>取决于敌人是否占据了玩家现有的视锥</strong>，是否<strong>必须移动视锥</strong>，或者是否<strong>必须移动视锥并改变所处的位置</strong>以进行<strong>交战</strong>。</p>
+<ul>
+<li><strong>最简单的接近矢量</strong>：在<strong>目前的视锥</strong>里玩家可以直接看到，而<strong>无需调整他们自身的位置或视线</strong>。（图11）</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618002844.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618002844.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图11</strong></p>
+<ul>
+<li><strong>中等的接近矢量</strong>：促使玩家<strong>必须改变</strong>其3D世界中的<strong>观察位置</strong>（但不一定是玩家自身位置）的<strong>矢量</strong>。（图12）</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618002905.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618002905.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图12</strong></p>
+<ul>
+<li><strong>最困难的接近矢量</strong>：任何需要玩家从当前位置<strong>最大限度地</strong>改变视角的<strong>接近矢量</strong>。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618002932.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618002932.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图13</strong></p>
+<p>当敌人的<strong>接近矢量</strong>，要求玩家<strong>改变他们的视锥</strong>和自身<strong>位置</strong>时，我们正在为玩家<strong>创造犯错的可能性</strong>。<strong>增加犯错的可能性</strong>是<strong>增加我们难度的原因</strong>。但是，为了进一步了解该指标，我们需要更多地去<strong>了解玩家心理</strong>。</p>
+<h2 id="玩家心理：纠正周期"><a href="#玩家心理：纠正周期" class="headerlink" title="玩家心理：纠正周期"></a>玩家心理：纠正周期</h2><p><strong>人类是优秀的“猜测者”</strong>。我们倾向于通过<strong>不断猜测，观察和纠正</strong>来<strong>迭代地猜测出解决问题的方式</strong>。想象一下，你正在伸手去喝杯咖啡。你将会移动你的手，<strong>观察其新的位置</strong>，然后<strong>更新与目标相遇所需的移动量</strong>。这将在每秒内发生很多次，直到你<strong>达到目标为止</strong>（图14）（这类似于Steve Swink 在<a href="https://link.zhihu.com/?target=http://www.amazon.com/Game-Feel-Designers-Sensation-Kaufmann/dp/0123743281/ref=sr_1_1?ie=UTF8&qid=1346336304&sr=8-1&keywords=game+feel">Game Feel中</a>的“美味蛋糕”的示例）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618003003.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618003003.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图14</strong></p>
+<p>基本上，如果我们<strong>期望玩家去改变他们所处的位置或视线越多</strong>，那么我们需要<strong>迫使他们进行的纠正周期</strong>就越多。<strong>纠正周期的数量越少，玩家越容易锁定自己的目标</strong>。</p>
+<p>图14是我们<strong>在静态目标上锁定时猜测过程的示例</strong>。<strong>大的红色三角形</strong>代表在任何<strong>猜测阶段的误差幅度</strong>；<strong>三角形越大</strong>，该猜测<strong>步骤中的错误空间就越大</strong>。</p>
+<p>当我们通过<strong>移动，观察和纠正（更新）锁定目标时</strong>，我们<strong>逐渐减小了误差范围</strong>。但是，<strong>如果目标对象持续移动</strong>，则<strong>可能性</strong>就不会以<strong>线性方式减少</strong>，如图14所示。</p>
+<p>再举一个例子，我们假设玩家正在<strong>执行相同的移动，观察，纠正（更新）静态对象</strong>的过程–假设他们正<strong>试图不断地调整</strong>十字准心，以使其<strong>结束</strong>（击中）目标。他们将<strong>逐渐移动</strong>十字准心，直到通过这一<strong>改善过程</strong>令<strong>误差范围越来越小</strong>为止。</p>
+<p>现在，想象一下<strong>目标</strong>突然对玩家<strong>做出反应</strong>，并试图<strong>通过逃离扫射来躲避玩家的射击</strong>（图15）。玩家现在将需要<strong>显著地更新他们的猜测过程</strong>，这将带来<strong>更多的可能性</strong>，并因此<strong>可能会带来更大的误差</strong>，直到他们最终<strong>再次锁定敌人</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618003021.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618003021.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图15</strong></p>
+<h2 id="规避矢量-Evasion-Vectors"><a href="#规避矢量-Evasion-Vectors" class="headerlink" title="规避矢量(Evasion Vectors)"></a><strong>规避矢量</strong>(Evasion Vectors)</h2><p>尽管<strong>开阔空间</strong>为玩家提供了被敌人从更多的<strong>接近矢量包围或接近</strong>的可能性，但开阔空间也为玩家<strong>提供了规避操作的机会</strong>。</p>
+<p>在图16中，玩家具有优势，因为<strong>躲避矢量</strong>比敌方的<strong>接近矢量</strong>更多。在上一篇文章中，我讨论了<a href="https://link.zhihu.com/?target=http://www.gamecareerguide.com/features/951/a_theory_of_compression_and_.php">压缩和漏斗的概念</a>，我将这些<strong>矢量</strong>称为“<strong>扩张矢量</strong>”（<em>expansion vectors</em>），这一元素在玩家身上可以<strong>缓解由于敌人侵袭时压缩所带来的压力</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618003954.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618003954.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图16</strong></p>
+<p>在大多数情况下，第一人称视角游戏的玩家会选择，<strong>首先调整他们自身的位置</strong>，<strong>以便保持尽可能多的敌人在当前视角中</strong>-观看一些人玩《<em>英雄萨姆》时</em>，他们通常会喜欢通过<strong>后退来避开敌人</strong>，以<strong>保持敌方处于自己的视角之内</strong>。在大多数情况下，玩家<strong>画面动态的变化</strong>会优先于<strong>视锥的过度变化</strong>，也就是玩家会选择<strong>先后退</strong>，而对<strong>观察位置</strong>的改变则较少。（图17）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618003940.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618003940.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图17</strong></p>
+<p>在战术预测中，<strong>在敌人的周围扫射将始终是有利的</strong>，因为敌人<strong>需要更多的纠正周期</strong>来<strong>攻击</strong>一个<strong>已经发动攻击的目标</strong>，而不仅仅是准心<strong>简单地朝着目标进行移动</strong>。你可以根据游戏中<strong>十字准心的移动</strong>来考虑这一点。如果玩家<strong>在远离敌人的情况下选择退缩</strong>，尽管他们正在逐渐成为较小的目标，但<strong>调整十字准心所需</strong>的<strong>正确的循环次数却要少得多</strong>。（图18）注：所以这也验证了选择发动突袭大胆地近身刚和选择撤退被人当靶点之间的区别。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618004121.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618004121.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图18</strong></p>
+<p>当<strong>敌人移动的方式</strong>导致<strong>玩家频繁地更新他们的视角时</strong>，由于要引入到<strong>预测中的误差范围</strong>，<strong>预测将变得更加困难</strong>。（图19）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618004213.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618004213.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图19</strong></p>
+<h2 id="关卡几何体和玩家战术-Level-Geometry-and-Player-Tactics"><a href="#关卡几何体和玩家战术-Level-Geometry-and-Player-Tactics" class="headerlink" title="关卡几何体和玩家战术(Level Geometry and Player Tactics)"></a>关卡几何体和玩家战术(Level Geometry and Player Tactics)</h2><p>现在我们已经理解了<strong>主要指标和玩家心理</strong>，可以从<strong>难度和情感</strong>的角度来<strong>研究关卡的几何体</strong>是如何开始<strong>改变这些关系</strong>。</p>
+<p>图20简单地描述了<strong>关卡的几何体</strong>是如何<strong>通过影响视锥</strong>而<strong>改变玩家的情绪状态和策略</strong>。图20的第1张代表<strong>玩家视锥的人工表示</strong>，而第2帧显示了<strong>被遮挡后的实际视锥</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618004451.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618004451.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图20</strong></p>
+<p>通过在图20中使用的示例引入敌人，我们可以开始评估，关卡几何体是<strong>如何修改视线，视角和规避/接近矢量</strong>。图21是玩家<strong>沿着狭窄的走廊</strong>向前进入<strong>开阔空间</strong>的示例。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618005714.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618005714.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图21</strong></p>
+<p>由于<strong>镜头锥体</strong>已经<strong>被关卡中的几何体所遮挡</strong>，因此玩家<strong>没有意识到前方在巡逻的敌人</strong>。在这个例子中，玩家是非常弱势的。关卡中的几何体正在<strong>减少其可能的规避矢量</strong>。通过消除玩家<strong>先发动扫射的可能性</strong>，<strong>敌人的优势</strong>在于<strong>只需要更少的纠正周期就能够瞄准玩家</strong>。</p>
+<p>在此示例中，玩家需要<strong>冲入未知的空间</strong>才能与敌人交战。<strong>他们对此将会犹豫不决</strong>，<strong>为了顺利地进入其中</strong>，这需要改变<strong>GFOV</strong>和<strong>自身的位置</strong>。除此之外，<strong>由于房间被遮挡</strong>，他们在这种环境中将不会有<strong>态势感知</strong>-他们甚至<strong>可能认为自己正在进入另一个狭窄的走廊</strong>。</p>
+<p>然而，<strong>也会有好处</strong>。有限的空间<em>有时</em>会对玩家有利，因为它<strong>减少了敌人可以用来对付它们的接近矢量的数量</strong>。但是，稍作权衡一下，总是会减少可能的<strong>运动方向</strong>，因此评估这种特殊情况<strong>需要更多了解敌人的行为</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618005659.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618005659.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图22</strong></p>
+<p>如果我们<strong>根据敌人的位置去改变玩家位置</strong>，那么我们将遇到<strong>一种截然不同的遭遇</strong>-这将会是一种有利于玩家的遭遇战，如上图情形，玩家可以<strong>调整自身位置以使敌人无法发现自己</strong>，玩家将拥有态势感知，占据主动权（图22）。这是我之前讨论过的<strong>压缩和漏斗概念</strong>的另一个扩展。</p>
+<p>图22中所示走廊是<strong>阻塞点</strong>，它们会导致玩家受到压缩-当被压缩后，玩家会感到<strong>极度焦虑</strong>，想要<strong>快速移动以脱离这种环境</strong>，尤其是在死亡竞赛类型的游戏比赛中，<strong>人类玩家会充分的利用这些阻塞点</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618005510.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618005510.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图23</strong></p>
+<p>图23演示了我们如何通过<strong>引入特定关卡几何体</strong>来<strong>调整玩家的战术能力</strong>和<strong>随后的情绪状态</strong>。在图23的第一张图中，玩家通过该图<strong>正在向前移动</strong>，并且有两个敌人<strong>从对角线的矢量朝向接近玩家</strong>，位于<strong>玩家的视线之外</strong>。这个例子类似于图21。但是，当玩家通过<strong>改变视锥</strong>（和/或自身位置）来与敌人交战时，他们会<strong>将自己重新移动到一个角落</strong>，从而<strong>破坏了</strong>他们为<strong>规避机动</strong>而<strong>拥有的可用空间</strong>。（图24）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618005451.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618005451.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图24</strong></p>
+<p><strong>强迫敌人通过阻塞点</strong>，对于玩家来说<strong>将总是有利的</strong>。图25修改了图24中所示的方案，<strong>以此将战术上的优势转向玩家</strong>。图25的第2张<strong>从战术角度上</strong>演示了<strong>掩体(遮挡物)如何对玩家有利</strong>。在该示例中，玩家有两个要注意的<strong>接近矢量</strong>。由于只有一个敌人，因此玩家可以<strong>使用两个接近矢量中的任何一个作为规避矢量</strong>，<strong>以在需要时将敌人逼到另一个阻塞点</strong>。注：(躲猫猫)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618005906.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618005906.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图25</strong></p>
+<p>图25可以进一步的对关卡几何体进行修改，以增加其他的阻塞点（图26）。但是，这样将会对玩家不利，因为对玩家来说有太多可能的接近矢量。我们可以从“封闭空间”的角度来考虑这种情况-玩家用作检查清单的一种策略，以确保他们在进入下一个游戏空间前系统地封闭可能的伏击矢量。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618010155.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618010155.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图26</strong></p>
+<p>在图27中，我们得到的<strong>阻塞点的数量</strong>，与图26中相同。但是，玩家可以<strong>系统地关闭其中的每一个。</strong>在图26中，玩家需要一次性管理三个不同的<strong>潜在的接近矢量</strong>，而在图27的线性空间中，玩家每次只需要管理两个即可。除此之外，玩家可以<strong>逐步关闭这些空间</strong>以进一步<strong>减少接近矢量</strong>的数量。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618010301.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618010301.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图27</strong></p>
+<p>如图27所示，当玩家在环境中移动时，<strong>他们先会去封闭空间，以防止潜在袭击</strong>（至少在正常情况下）。而诸如“ <em>死亡空间”之类的</em>游戏<strong>故意打破了这一规则</strong>，以<strong>促使玩家始终处于焦虑状态</strong>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618010611.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618010611.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图28</strong></p>
+<p><strong>多人游戏地图是该规则的明显例外</strong>。图29是死亡竞赛类型的空间的示例，该空间<strong>有意的防止玩家去封闭空间</strong>。这种类型的<strong>空间设计的目的是严格的非线性流程</strong>，并且<strong>要尽可能多地的进行对抗</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618010823.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618010823.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图29</strong></p>
+<h2 id="高度元素-Height-Elements"><a href="#高度元素-Height-Elements" class="headerlink" title="高度元素(Height Elements)"></a>高度元素(Height Elements)</h2><p>正如<strong>平面对象会影响空间度量</strong>一样，<strong>高度元素</strong>也会如此。在本文的前面，我们考虑了<strong>如何将龙门架用作高级的遮挡物</strong>，以使玩家能够在<strong>具有更强的态势感知能力时获得优势</strong>。</p>
+<p>同样重要的是，再一次的<strong>证明了视线在确定难度的指标方面</strong>，是<strong>如何的优于虚拟空间</strong>。</p>
+<p>尽管玩家的<strong>规避矢量有限</strong>，但如图30所示的龙门架却可以在<strong>玩家瞄准较低楼层的敌人时赋予其扫射的能力</strong>。这两个元素的组合在这种情况下<strong>为玩家提供了最有利的位置。</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618010940.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618010940.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图30</strong></p>
+<p>为了进一步地说明这一点，让我们考虑<strong>玩家处于相反的位置</strong>（图31）。靠近龙门架时，玩家<strong>将对其上方位置有明显的遮挡</strong>。除此之外，他们<strong>消除此遮挡的唯一方法是进行后退</strong>。如前面的示例所示，如果<strong>玩家试图选择后退离开龙门架</strong>，则<strong>任何试图瞄准他们的敌人</strong>只需要<strong>较少的纠正周期</strong>来获得<strong>准确的命中率</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618011036.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618011036.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图31</strong></p>
+<p>在这种情况下，玩家会冒险进行后退的动作，来攻击一个比他们高的潜在敌人（图32）。尽管最终结果意味着<strong>占领龙门架的敌人</strong>将被<strong>束缚在视锥中</strong>，但<strong>玩家也正在使自己成为更容易的目标</strong>。<strong>理想情况下</strong>，高级玩家将开始学习，<strong>在这种情况下进行的任何后退</strong>，都<strong>应该伴随着大量随机的随机扫射动作。</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618011215.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618011215.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图32</strong></p>
+<p><strong>这种情况下最困难的迭代</strong>可以在图33中看到。如果我们<strong>取消了玩家的扫射能力</strong>，并且<strong>在玩家的路径上添加了一个悬垂突出的壁架</strong>，那么<strong>这将是该空间最困难的迭代</strong>。玩家的视线<strong>减少和降低了</strong>，因此他们<strong>获得的态势感知和计划其行动以及可能的替代方案的能力降低</strong>。除此之外，<strong>玩家的躲闪选择权</strong>已经以<strong>最坏的方式被破坏了</strong>-他们只能<strong>进行后退</strong>，而不是<strong>更有效的扫射式动作</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618011342.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618011342.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图33</strong></p>
+<p>如果我们发现图33中给出的示例<strong>对玩家来说太困难了</strong>，我们可以<strong>使用合理的方法</strong>开始<strong>修改关卡的几何体</strong>，<strong>以这种方式逐渐降低难度</strong>。例如，图34<strong>使走廊的高度高得多</strong>，以便<strong>玩家可以看到它们的前面有一个龙门架</strong>，这<strong>至少会让他们知道</strong>所存在的<strong>接近矢量</strong>的<strong>潜在危险</strong>。然后，他们可以在靠近时调整视锥来适应环境的这一部分，而不是被迫添加多个校正周期。<img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618011800.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210618011800.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图34</strong></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>术语“结论”具有误导性；就<strong>理解空间对游戏难度和玩家心理的影响</strong>而言，这里展示的只是<strong>冰山一角</strong>。<strong>理解虚拟空间</strong>的下一步是<strong>考虑在游戏几何体中</strong>，我们<strong>具有许多吸引力和排斥力</strong>。之前，我在另一篇文章中讨论了<strong>这一理论的组成部分</strong>，其中<a href="https://link.zhihu.com/?target=http://www.gamecareerguide.com/features/951/a_theory_of_compression_and_.php">涉及</a>压缩和漏斗<a href="https://link.zhihu.com/?target=http://www.gamecareerguide.com/features/951/a_theory_of_compression_and_.php">的概念</a>，并且在本文中也一直暗示了它的好处。</p>
+<p><strong>理解动态关系</strong>是下一个难题。我们需要<strong>了解迫使玩家移动并与关卡中的几何体互动的动力</strong>。不过，到目前为止，这种<strong>合理的3DFPS游戏难度提升方法</strong>可以<strong>轻松地应用于你自己的设计概念</strong>。如果<strong>空间设计</strong>充分的<strong>考虑了玩家的态势感知能力</strong>，那么我们就可以<strong>开始运用其他的设计工具</strong>，如<strong>杰西谢尔的利益曲线</strong>，<strong>进一步地提高我们的设计</strong>。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>Tan, D. S., Czerwinski, M. P., Robertson, G. G. (2006). Large Displays Enhance Optical Flow Cues and Narrow the Gender Gap in 3-D Virtual Navigation.Human Factors: The Journal of the Human Factors and Ergonomics SocietySummer 2006 vol. 48 no. 2 318-333</p>
+<p>初次编译于 2019-11-02</p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://katanaproduction.cn/2021/06/18/%E7%A9%BA%E9%97%B4%E6%8C%87%E6%A0%87%EF%BC%9A%E6%88%98%E6%9C%AF%E6%80%A7%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/>https://katanaproduction.cn/2021/06/18/%E7%A9%BA%E9%97%B4%E6%8C%87%E6%A0%87%EF%BC%9A%E6%88%98%E6%9C%AF%E6%80%A7%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-18T01:36:54+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年6月18日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/LevelDesign/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>LevelDesign</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://katanaproduction.cn/2021/06/18/%E7%A9%BA%E9%97%B4%E6%8C%87%E6%A0%87%EF%BC%9A%E6%88%98%E6%9C%AF%E6%80%A7%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/&title=空间指标：战术关卡设计 - Katana Production&summary=
+什么是优秀的关卡设计？身为一名博士和教育家，麦克米兰（McMillan）与育碧（Ubisoft）合作创建了一门游戏设计课程，它研究了视野将如何影响玩家。它通过展示了一些游戏场景，表明了这些场景下，玩家将可能面临的不同战术选择。
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://katanaproduction.cn/2021/06/18/%E7%A9%BA%E9%97%B4%E6%8C%87%E6%A0%87%EF%BC%9A%E6%88%98%E6%9C%AF%E6%80%A7%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/&title=空间指标：战术关卡设计 - Katana Production&summary=
+什么是优秀的关卡设计？身为一名博士和教育家，麦克米兰（McMillan）与育碧（Ubisoft）合作创建了一门游戏设计课程，它研究了视野将如何影响玩家。它通过展示了一些游戏场景，表明了这些场景下，玩家将可能面临的不同战术选择。
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://katanaproduction.cn/2021/06/18/%E7%A9%BA%E9%97%B4%E6%8C%87%E6%A0%87%EF%BC%9A%E6%88%98%E6%9C%AF%E6%80%A7%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/&title=空间指标：战术关卡设计 - Katana Production&summary=
+什么是优秀的关卡设计？身为一名博士和教育家，麦克米兰（McMillan）与育碧（Ubisoft）合作创建了一门游戏设计课程，它研究了视野将如何影响玩家。它通过展示了一些游戏场景，表明了这些场景下，玩家将可能面临的不同战术选择。
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/'>
+          <p class='title'>战斗区域剖析<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+[在这份详细的设计文章中，蓝色城堡（Dead Rising 2）的关卡设计总监乔什·布里奇（Josh Bridge）研究了如何为第一人称/第三人称射击游戏设计令人难忘的战术战斗区域]
+
+
+
+作...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%EF%BC%9A"><span class="toc-text">目标：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E5%BA%A6%E9%87%8F-The-Metrics-of-Space"><span class="toc-text">空间度量(The Metrics of Space)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E8%A7%86%E9%87%8E%E5%92%8C%E6%98%BE%E7%A4%BA%E8%A7%86%E9%87%8E-Geometric-Field-of-View-amp-Display-Field-of-View"><span class="toc-text">几何视野和显示视野(Geometric Field of View &amp; Display Field of View)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A5%E5%8F%A3-amp-%E9%81%AE%E6%8C%A1%E7%89%A9%E5%92%8C%E8%A7%86%E7%BA%BF-Portals-amp-Occluders-and-Line-of-Sight"><span class="toc-text">入口&amp;遮挡物和视线(Portals &amp; Occluders, and Line of Sight)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A1%E8%A6%81%E6%8C%87%E6%A0%87%EF%BC%9A%E7%A7%BB%E5%8A%A8%E8%83%BD%E5%8A%9B%E5%92%8C%E7%A7%BB%E5%8A%A8%E5%8F%AF%E8%83%BD%E6%80%A7"><span class="toc-text">次要指标：移动能力和移动可能性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E8%BF%91%E7%9F%A2%E9%87%8F-Approach-vectors"><span class="toc-text">接近矢量(Approach vectors)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%A9%E5%AE%B6%E5%BF%83%E7%90%86%EF%BC%9A%E7%BA%A0%E6%AD%A3%E5%91%A8%E6%9C%9F"><span class="toc-text">玩家心理：纠正周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%84%E9%81%BF%E7%9F%A2%E9%87%8F-Evasion-Vectors"><span class="toc-text">规避矢量(Evasion Vectors)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E5%8D%A1%E5%87%A0%E4%BD%95%E4%BD%93%E5%92%8C%E7%8E%A9%E5%AE%B6%E6%88%98%E6%9C%AF-Level-Geometry-and-Player-Tactics"><span class="toc-text">关卡几何体和玩家战术(Level Geometry and Player Tactics)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E5%BA%A6%E5%85%83%E7%B4%A0-Height-Elements"><span class="toc-text">高度元素(Height Elements)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-text">参考文献</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="空间指标：战术关卡设计";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        本站使用
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+	
+	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/valine.min.js"></script>
+
+
+<script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  pjax_comment=pjax_valine;
+</script>
+
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://katanaproduction.cn' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://katanaproduction.cn' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://katanaproduction.cn' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      
+	  
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+       
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        if (typeof IssuesAPI == "undefined") {
+          loadIssuesJS();
+        }
+        
+		
+          try{pjax_comment();} catch (e) {}
+        
+      } catch (e) {
+        console.log(e);
+      }
+	  
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>

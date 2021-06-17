@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>战斗区域剖析 - Katana Production</title>
+  
+    <meta name="keywords" content="LevelDesign">
+  
+
+  
+    <meta name="description" content="
+[在这份详细的设计文章中，蓝色城堡（Dead Rising 2）的关卡设计总监乔什·布里奇（Josh Bridge）研究了如何为第一人称/第三人称射击游戏设计令人难忘的战术战斗区域]
+">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+    <link rel="shortcut icon" type='image/x-icon' href="https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/KatanaStudio-LOGO.ico">
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+
+<script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) document.write('\x3Cscript id="_iealwn_js" data-outver="11" src="https://support.dmeng.net/ie-alert-warning/latest.js">\x3C/script>'); </script>
+
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header always shadow blur show"  >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+            <img no-lazy class='logo' src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/KatanaStudio-LOGO%20(1)%20(1).png'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210301012742.png"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Katana Production</p>
+    
+    
+      <p class="subtitle">LevelDesigner&TechArt&Translator Apprentice</p>
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/v4/getting-started/"
+              
+              
+              id="v4getting-started">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg'><p>文档</p>
+            </a>
+          
+            <a href="/faqs/"
+              
+              
+              id="faqs">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg'><p>帮助</p>
+            </a>
+          
+            <a href="/examples/"
+              
+              
+              id="examples">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg'><p>示例</p>
+            </a>
+          
+            <a href="/contributors/"
+              
+              
+              id="contributors">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg'><p>社区</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+    <div class='headimg-div'>
+      <a class='headimg-a'>
+        <img class='headimg' src='https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003119.png'/>
+      </a>
+    </div>
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        战斗区域剖析
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png">
+    <p>Katana</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/LevelDesign/">LevelDesign</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年6月17日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="战斗区域剖析" data-path="/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <blockquote>
+<p>[在这份详细的设计文章中，蓝色城堡（Dead Rising 2）的关卡设计总监乔什·布里奇（Josh Bridge）研究了<strong>如何为第一人称/第三人称射击游戏设计令人难忘的战术战斗区域</strong>]</p>
+</blockquote>
+<a id="more"></a>
+
+<p>作者：乔什·布里奇（Josh Bridge）</p>
+<h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><p>以下是尝试去<strong>辨别，命名和描述</strong>典型的<strong>基于掩体的射击视频游戏</strong>玩家所必需的<strong>关键要素</strong>。在射击游戏中，核心玩法通常主要围绕着<strong>足够长的生存时间</strong>以及<strong>杀死威胁玩家或阻碍玩家前进的事物</strong>。</p>
+<p>因此，我们面临的设计挑战是，以<strong>新颖而又有趣的方式</strong>去<strong>呈现少量游戏玩法</strong>，使玩家不得不坐下来一直玩到最后……并对游玩续作保持期待。</p>
+<p>读者应当注意，本文讨论内容主要关注于<strong>关卡中的战斗区域</strong>，不应将其<strong>误解为</strong>它是<strong>关卡设计所需的唯一要素</strong>。</p>
+<h2 id="战斗区域"><a href="#战斗区域" class="headerlink" title="战斗区域"></a><strong>战斗区域</strong></h2><p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003206.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003206.png" srcset="data:image/png;base64,666"></p>
+<p><strong>战斗区域</strong>是指<strong>关卡内用于战斗的游戏区域</strong>。这是一个广义上的术语，并不一定意味着<strong>明确的物理界限</strong>……尽管在某些情况下可以。无论哪种情况，<strong>LD(关卡设计师)**都会在各种游戏的支持下创建预期的战斗区域；</strong>敌人，掩体，可破坏物体，无法通行的地点，侧翼位置等<strong>。</strong>布局和位置<strong>承载着玩家</strong>必须在该区域内进行战斗的期望**-<strong>本质上是核心游戏玩法的呈现</strong>。</p>
+<p><em>击杀区域(KILLZONE)</em></p>
+<p>定义为玩家和玩家/或AI<strong>没有掩护</strong>并且可以<strong>直接射击并可能被杀死的区域</strong>。该区域是可见的（地面上的地雷）或虚拟的（显示踪迹的道具燃烧道具）。这里<strong>设计的有效性</strong>决定了灭火的难度。如果没有<strong>有效的“击杀区域”</strong>，玩家将不需要掩护，并消除了用于<strong>游戏的关键要素之一</strong>。</p>
+<p><em>防御区域/掩体(DEFENCE)</em></p>
+<p>它应当有着保护玩家和为玩家/或AI<strong>免受直接射击的区域</strong>。没有它们，<strong>其游戏体验就会被单调地归纳为射击或被射击</strong>。<strong>掩体对于游戏风格和难度有着很大影响</strong>，后面将会进一步介绍。</p>
+<h2 id="玩家路线"><a href="#玩家路线" class="headerlink" title="玩家路线"></a><strong>玩家路线</strong></h2><p><em>按你的方法玩</em></p>
+<p>玩家应该能够<strong>按照自己想要的方式进行游戏</strong>。为什么呢？它<strong>提供了更具有创造力的体验</strong>，玩家可能希望自己再次体验。<strong>一遍又一遍地将玩家限制在一条路径和游戏风格上</strong>会很累，<strong>多样性</strong>是<strong>保持玩家参与度</strong>的关键。</p>
+<p>每个人在作为射击游戏玩家时，都有自己喜欢的打法：</p>
+<ul>
+<li><strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Run%26Gun">跑轰者</a>(Run and gun)</strong>-枪支猛烈开火，射击所有可见之物，他们通常会走<strong>主路径</strong>。  ///硬刚型</li>
+<li><strong>忍者(Ninja)</strong>-攀爬并越过所有物体，或通过其发现的小道去活动；他们通常会<strong>避免通过主路径</strong>。  ///潜袭型</li>
+<li><strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Camping_(video_games)">蹲点者</a>(Camper)</strong>-喜欢<strong>在安全区域活动</strong>，并在跑路前<strong>从尽可能远的地方进行狙击</strong>。  ///蹲点型</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003228.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003228.png" srcset="data:image/png;base64,666"></p>
+<p>在以上关卡灰盒中，包含了以上不同风格的玩家路线的示例：</p>
+<ul>
+<li>跑轰者可能会直接<strong>冲过去，开始战斗和射击，仅在必要时才会寻找掩护</strong>。</li>
+<li>忍者很可能会<strong>爬上并跳过所有的掩体</strong>，从而快速<strong>穿过活动区域</strong>。</li>
+<li>蹲点者可能会<strong>在高点上寻找安全的地方</strong>，以<strong>远距离阻击敌人</strong>。</li>
+</ul>
+<p>针对以上战斗区域，去适应不同的游戏风格，并不是一件容易的事，基于经验，我们应当从开始便进行规划。此元素对于<strong>摆脱线性/脚本化</strong>的旧式设计关卡至关重要。</p>
+<p>当你认为你的关卡草图即将完成时，请问自己一遍：</p>
+<ul>
+<li>有没有办法<strong>绕过未被发现的敌人</strong>？</li>
+<li>玩家可以潜入<strong>到敌人下方</strong>吗？</li>
+<li>玩家有多种<strong>掩体选择</strong>吗？</li>
+<li>玩家必须蹲下吗？</li>
+<li>玩家可以通过<strong>从物体跳到别的物体上</strong>的方式在空中寻路吗？</li>
+</ul>
+<hr>
+<p><strong>很明显吗？</strong></p>
+<p>在战斗区域内为玩家<strong>提供多种选择和路径</strong>可带来<strong>开放性和自由性</strong>。但是，如果玩家看不到，那一切就都不是，全都白搞。<strong>避免尝试隐藏替代路线和选项</strong>；<strong>一切都应该显而易见</strong>！</p>
+<p>通过以下方式在路径上展示给玩家：</p>
+<ul>
+<li><strong>直面玩家</strong>：尽快<strong>向玩家</strong>展示其选择。在<strong>战斗区域入口处</strong>以<strong>更严格的路径引导玩家</strong>会增加他们<strong>朝向正确方向的几率</strong>。</li>
+<li>注意：路径<strong>不一定需要使用固定的静态网格物体</strong>进行限制。可以<strong>引导玩家注意可移动物体的危险</strong>，以<strong>鼓励他们应移动的方向</strong>。一些参与者会忽略这一点并继续前进，但是大多数的玩家<strong>会跟随并避免尝试继续前进</strong>。</li>
+<li><strong>度量指标</strong>：路径的<strong>宽度和角度</strong>保持一致。<strong>狭窄而陡峭</strong>的方法看起来并不诱人，而且<strong>不明显</strong>。</li>
+<li><strong>照明/ FX</strong>：<strong>突出隧道或梯子</strong>的“神秘射线”或<strong>氛围光</strong>。</li>
+<li><strong>小兵</strong>：生成一些<strong>不致命的小兵以此吸引玩家的注意力</strong>。</li>
+</ul>
+<p><strong>再也不要出现管道(通道状)！</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003323.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003323.png" srcset="data:image/png;base64,666"></p>
+<p><strong>最常见且最容易生产</strong>的是带有<strong>奇怪的掩体的平面布局</strong>。作为早期的<strong>训练关</strong>卡，这些可能勉强OK，但是在整个游戏的过程中，再次穿过它们时将会感到非常无聊，因为我们曾经“去过那里”。所以实际上我们面临的挑战是<strong>创建一种布局，并利用整个3D世界为玩家提供从各种角度和方向去射击的</strong>这一事实。</p>
+<h2 id="掩体"><a href="#掩体" class="headerlink" title="掩体"></a>掩体</h2><p>显而易见，<strong>掩体是射手关键组成的一部分</strong>。但是，在您将其视作<strong>仅在装饰关卡</strong>时“发生”的事情之前，请确保您<strong>了解什么类型以及放置方式</strong>如何<strong>直接影响玩家</strong>的体验。</p>
+<p><strong>虚构之物与故事性-非传统的掩体</strong></p>
+<p><img src="https://www.gamasutra.com/db_area/images/feature/4080/ev4.jpg" class="lazyload" data-srcset="https://www.gamasutra.com/db_area/images/feature/4080/ev4.jpg" srcset="data:image/png;base64,666" alt="img"></p>
+<p>F @ ＃$＃!! @ G 板条箱！？！？！？</p>
+<p>重复的板条箱是一个很好的迹象，表明团队用尽了所有的想法。如果具有<strong>故事性支持</strong>的话，它们就可以工作（板条箱仓库！），但<strong>应避免使用</strong>。理想的情况下，<strong>出色的掩体不会脱颖而出</strong>：</p>
+<p>“嘿，看着我！当你击中那看不见的扳机时，我就是这场战斗的象征物！”</p>
+<p>通过在整个关卡中<strong>使用相同外观</strong>，<strong>大小和形状</strong>的<strong>掩体对象</strong>，玩家开始看到的将是游戏而不是世界。玩家可以看到<strong>战斗区域即将来临</strong>。当<strong>掩体与该区域的虚构之物不完全匹配</strong>时，尤其令人讨厌的……就像丛林中突然出现的箱子一样。</p>
+<p><strong>一切设计都必须有意义</strong>。在<strong>设计作战区域</strong>时，至关重要的是<strong>使用该区域的虚构内容</strong>来激发联想，我们<strong>将在游戏的地面上放置哪些物体</strong>，以及<strong>如何将其用作掩体</strong>。这需要成为餐巾草稿纸计划中的一部分，因为它与<strong>玩家所在的环境是共生</strong>的。</p>
+<hr>
+<p><strong>侧翼(Flank)！</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003411.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003411.png" srcset="data:image/png;base64,666"></p>
+<p>玩家希望自己像一个笨蛋，可以赢过“愚蠢的游戏”。通过在<em>击杀区域</em>和<em>防御区域(掩体)<em>的</em></em>两侧赋予玩家超越AI的能力<strong>是关键。</strong>计划使玩家能够获得像英雄般战胜敌人的那种感觉所带来的振作。**</p>
+<p>上图显示了玩家可以在<strong>示例布局中侧击敌人</strong>的几种方式。</p>
+<p><strong>与难度的关系</strong></p>
+<p>掩体对于<strong>控制战斗区域的难度</strong>至关重要，考虑关卡中<strong>强度和难度</strong>带来的不同<strong>控制</strong>，<strong>您的战斗区域</strong>应反映出这一点。</p>
+<p>通过<strong>考虑以下因素来控制掩体难度</strong>：</p>
+<ul>
+<li><strong>数量</strong>：<strong>更多的掩体</strong>意味着对敌人火力压制的<strong>更多保护</strong>，以及<strong>更多的机会</strong>来<strong>躲避和击杀</strong>敌人。较少的结果会**导致更大且更致命的击杀区域(可能会产生大量直击和受伤)**，从而增加了挑战。</li>
+<li><strong>间距</strong>：<strong>玩家的速度是间距的关键</strong>，因此请确保您精通我们的<em>度量指标</em>。<strong>掩体的距离比玩家可以冲刺的距离要大</strong>，这会导致在<strong>“击杀区域”</strong>进行<strong>危险的奔跑</strong>。允许连<strong>接玩家在掩体间的跳跃</strong>有助于**”忍者”层玩家**的路径。</li>
+<li><strong>大小和高度</strong>：<strong>大而宽提供了足够的掩盖范围</strong>，而<strong>一棵狭窄的树</strong>容易使玩家<strong>暴露于多道的火线之中</strong>。强迫玩家<strong>蹲在树桩后面</strong>比<strong>仅在墙壁后面跑步和站立要困难</strong>得多。</li>
+<li><strong>密度</strong>：一簇小树<strong>会破坏和影响视线</strong>，但<strong>不会影响到开火</strong>。</li>
+<li><strong>临时的</strong>：<strong>可破坏的掩体</strong>不会导致<strong>永久的掩体</strong>，它将被摧毁并<strong>将玩家暴露在击杀区域</strong>中。</li>
+</ul>
+<p>根据您对<strong>强度和难度的控制</strong>，<strong>巧妙地</strong>利用以上所述，以便使您的战斗区域以各种深思熟虑的方式带给玩家挑战。</p>
+<h2 id="分层和垂直度"><a href="#分层和垂直度" class="headerlink" title="分层和垂直度"></a><strong>分层和垂直度</strong></h2><p><strong>分层</strong>是指<strong>具有多层堆叠的游戏表面</strong>。<strong>分层战斗区</strong>对于<strong>支持上述游戏风格至关重要</strong>。需要在餐巾草稿图中<strong>规划不同层级</strong>，因为<strong>环境需要证明其合理性</strong>。在<strong>丛林中的时装表演</strong>，<strong>有人会信吗</strong>？</p>
+<p>下图是分层战斗区域的示例。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003446.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003446.png" srcset="data:image/png;base64,666"></p>
+<p><strong>垂直度</strong>是指<strong>垂直或水平构建的战斗区域</strong>。挑战<strong>集中在垂直的移动空间</strong>上，因此会侧重于<strong>攀爬/跳跃</strong>，这使得<strong>挑战将集中在所穿越的空间</strong>上。再加上战斗，就会大大增加难度。</p>
+<h2 id="战斗区域的布局"><a href="#战斗区域的布局" class="headerlink" title="战斗区域的布局"></a><strong>战斗区域的布局</strong></h2><p>战斗区域的布局主要有两种类型：<strong>一种具有非常狭窄的布局</strong>，被称为”阻塞点”，在布局中，玩家必须<strong>越过并克服致命的死亡区域</strong>，被我称之为“界限”。请注意下面的图片，<strong>它具有几条在同一阻塞点上的路径</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003512.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210617003512.png" srcset="data:image/png;base64,666"></p>
+<p>第二种布局类型被称为“<strong>自由形式”</strong>，它的”阻塞点”是不明确和模糊的。最终体验会更加<strong>“松散”</strong>，根据<strong>玩家所采用的战术和方法</strong>，死亡区域将<strong>可能在各个区域中的某处</strong>聚集从而产生，这给了玩家更大的<strong>自由度和随机性</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/ev8.jpg" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/ev8.jpg" srcset="data:image/png;base64,666"></p>
+<p><strong>相互转换</strong></p>
+<p>是否有可能设计一个以<strong>自由形式</strong>的布局开始，随后某处被定义为”阻塞点”的作战区域，反之亦然？转换可能是<strong>令人兴奋的组成部分</strong>，并且<strong>将为您带来难忘的战斗</strong>。</p>
+<hr>
+<h2 id="功能化设计"><a href="#功能化设计" class="headerlink" title="功能化设计"></a><strong>功能化设计</strong></h2><p>为什么在<strong>丛林</strong>中间会有一个<strong>箱子</strong>？</p>
+<p>该地区的所有事物都<strong>需要证明其合理性</strong>，以<strong>符合世界观的虚构</strong>。研究并收集参考资料，为您的<strong>布局设计奠定基础</strong>。考虑到：</p>
+<ul>
+<li>该区域在整个世界地图上的什么位置？</li>
+<li>是旧的还是新的？</li>
+<li>为什么这些物体在这里？</li>
+<li>是否有水路（溪流/河床/河床干涸）</li>
+<li>该区域是否已清理或自然密集？</li>
+<li>树木被砍倒了吗？</li>
+<li>人们如何进出该地区？</li>
+</ul>
+<p>为了<strong>中止怀疑不断加剧的程度</strong>，<strong>布局应该合理</strong>。有几种方法可以支持这一点：</p>
+<ul>
+<li><strong>功能性</strong>：与<strong>随机放置物体和结构</strong>以<strong>满足有效的战斗区域</strong>的需求相反，请记住，<strong>布局在技术上必须具有功能性并最终令人信服</strong>。例如，如果它是某种类型的<strong>存储仓库</strong>，那么<strong>如何装卸物品</strong>？一切都<strong>可以穿过门口</strong>吗？</li>
+<li><strong>历史</strong>：该区域存在多长时间了？如果是旧的，<strong>布局是否反映了这一点</strong>（<strong>损坏/混乱</strong>）？<strong>思考布局的历史</strong>有助于<strong>提供有关结构及其状态的想法</strong>。如果这是一个<strong>古老的地区</strong>，您能走进前门吗？长满了吗？坏了吗 也许<strong>通过围墙的塌陷部分</strong>进入的另一种方式会更<strong>适合布局的年代</strong>。</li>
+<li><strong>小故事(增加故事性)：</strong>没有什么比<strong>敌人</strong>更能<strong>打破这种幻觉</strong>了，他们正在<strong>无意识地巡逻明显的环形物体</strong>，<strong>或者站着无所事事</strong>（译者：等死？）他们的<strong>作用是什么</strong>？当您进入该区域时，他们<strong>应该做什么</strong>？如果他们刚到，他们<strong>是否要建立营地并卸货呢</strong>？如果他们在那里呆了一段时间，他们<strong>将如何打发时间</strong>？</li>
+</ul>
+<p>这个想法是<strong>要创造一个可信的环境</strong>，它不是<strong>严格地用于创建有效战斗区域的对象的随机组合</strong>。</p>
+<h2 id="控制挑战"><a href="#控制挑战" class="headerlink" title="控制挑战"></a><strong>控制挑战</strong></h2><p><strong>移动的击杀区域</strong></p>
+<p>当玩家习惯了“<strong>击杀区域</strong>”的概念时，如果每个“<strong>战斗区域</strong>”都像上一个一样<strong>可预测且静止</strong>，那么<strong>游戏的玩法仍然存在陈旧的风险</strong>，如果玩家**在整个战斗过程中只是从防御区域(掩体)**中“跳出并射击”时，这一观点尤其正确。</p>
+<p>设计者<strong>改变击杀的角度和位置</strong>，会<strong>迫使玩家找到新的防御区域(掩体)**。这有助于</strong>通过令人信服的智能AI创造动态世界**的印象。</p>
+<p>可以实现的方式：</p>
+<ul>
+<li>登台<strong>值班交替位置</strong>，<strong>增援部队进入战斗区域</strong>，这样玩家<strong>就不会从相同的角度逐个击落敌人</strong>。</li>
+<li>请注意，这应该是<strong>向玩家呈现的事件</strong>。</li>
+<li><strong>可破坏元素</strong>改变了比赛的场地；如果它是能让玩家意识到的游戏对象，那就很好。</li>
+<li>AI“后退”和“冲锋”；<strong>杀戮区域</strong>在战斗区域内<strong>来回移动</strong>，具体<strong>取决于玩家是否在减少他们的存活数量</strong>（AI后退），或者<strong>是否有一段时间出现了对峙</strong>（AI冲锋）</li>
+</ul>
+<p><strong>风险与回报</strong></p>
+<p>让<strong>玩家感到有力量</strong>没有错，<strong>即使是很短的时间内</strong>。<strong>被狩猎者在短时间内成为猎手</strong>，与吃豆人吃强力药丸不同。</p>
+<p>在<strong>布局中</strong>，<strong>考虑物体/物品的放置</strong>，这将在<strong>战斗中为玩家带来巨大的优势</strong>。例如：一个在杀戮区域中，<strong>突出显示一些镜头</strong>(藏有道具和宝贝)里的<strong>RPG</strong>；然后，玩家可以<strong>选择留在原处并安全地进行游戏</strong>，或者<strong>尝试冒着生命危险</strong>冲刺并跳入其中获取<strong>RPG</strong>。</p>
+<h2 id="扩展游戏性"><a href="#扩展游戏性" class="headerlink" title="扩展游戏性"></a><strong>扩展游戏性</strong></h2><p>最后但最重要的是，计划以<strong>彼此脱颖而出的方式来布置战斗区</strong>。关卡设计师<strong>面临的挑战</strong>是，在<strong>10个小时以上的体验过程</strong>中，不断的去反复提供端到端的，可能持续不到30秒的相同游戏玩法。</p>
+<p>即使理解了什么是<strong>支持一场有趣和引人入胜的战斗体验所需要的内容</strong>，但仍需要进一步的努力为<strong>核心战斗体验增加多样性</strong>，以此<strong>扩展玩家的感受</strong></p>
+<p><strong>添加扭曲-独特的演出</strong></p>
+<p>考虑<strong>构成核心机制</strong>并<strong>挑战一个或多个玩家的元素</strong>。玩家可以：</p>
+<ul>
+<li><strong>看到</strong></li>
+<li><strong>移动</strong></li>
+<li><strong>射击</strong></li>
+<li><strong>掩护</strong></li>
+<li><strong>听到</strong></li>
+<li><strong>受伤</strong></li>
+</ul>
+<p>通过给玩家一个<strong>正面的奖励</strong>，或者一个<strong>负面的奖励</strong>，可以帮助<strong>创造一个令人难忘的体验</strong>。</p>
+<p>考虑到这一点，<strong>负面反馈</strong>可能是<strong>充满浓烟的区域</strong>，从而<strong>限制了玩家的视线，</strong>或者大量恐龙的蜂拥<strong>会造成伤害并减缓玩家的移动速度</strong>。</p>
+<p><strong>积极的额外待遇</strong>也会给玩家带来<strong>令人难忘的战斗体验</strong>。当玩家遇到<strong>一大堆爆炸物</strong>时，他<strong>突然被一大群恐龙袭击了</strong>，这时玩家<strong>有机会引燃炸药并发出嘘声，直到心满意足</strong>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>一切都始于餐巾纸上的草图，<strong>尽早计划这些关键的要素</strong>。</p>
+<p>质问自己：<strong>“这场与众不同的战斗，最终玩家会给玩家留下什么样的体验和印象呢？”</strong></p>
+<p>编辑于 2019-11-11</p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://katanaproduction.cn/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/>https://katanaproduction.cn/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-17T00:58:41+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年6月17日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/LevelDesign/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>LevelDesign</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://katanaproduction.cn/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/&title=战斗区域剖析 - Katana Production&summary=
+[在这份详细的设计文章中，蓝色城堡（Dead Rising 2）的关卡设计总监乔什·布里奇（Josh Bridge）研究了如何为第一人称/第三人称射击游戏设计令人难忘的战术战斗区域]
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://katanaproduction.cn/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/&title=战斗区域剖析 - Katana Production&summary=
+[在这份详细的设计文章中，蓝色城堡（Dead Rising 2）的关卡设计总监乔什·布里奇（Josh Bridge）研究了如何为第一人称/第三人称射击游戏设计令人难忘的战术战斗区域]
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://katanaproduction.cn/2021/06/17/%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E5%89%96%E6%9E%90/&title=战斗区域剖析 - Katana Production&summary=
+[在这份详细的设计文章中，蓝色城堡（Dead Rising 2）的关卡设计总监乔什·布里奇（Josh Bridge）研究了如何为第一人称/第三人称射击游戏设计令人难忘的战术战斗区域]
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/06/18/%E7%A9%BA%E9%97%B4%E6%8C%87%E6%A0%87%EF%BC%9A%E6%88%98%E6%9C%AF%E6%80%A7%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>空间指标：战术关卡设计</p>
+          <p class='content'>
+什么是优秀的关卡设计？身为一名博士和教育家，麦克米兰（McMillan）与育碧（Ubisoft）合作创建了一门游戏设计课程，它研究了视野将如何影响玩家。它通过展示了一些游戏场景，表明了这些场景...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/03/02/%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85%EF%BC%9A%E4%B8%89%E7%82%B9%E7%85%A7%E6%98%8E%E6%B3%95%E6%95%99%E7%A8%8B/'>
+          <p class='title'>知识补充：三点照明法教程<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+在这篇文章中，我将重点介绍角色照明，因为角色照明通常使用了三点照明法，并且其中往往会使用一些非常不同的方法。
+
+
+
+本文转自lightingpixels网站中的作者Edu Martin Jul...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E7%BA%B2"><span class="toc-text">大纲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F"><span class="toc-text">战斗区域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%A9%E5%AE%B6%E8%B7%AF%E7%BA%BF"><span class="toc-text">玩家路线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A9%E4%BD%93"><span class="toc-text">掩体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E5%92%8C%E5%9E%82%E7%9B%B4%E5%BA%A6"><span class="toc-text">分层和垂直度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%98%E6%96%97%E5%8C%BA%E5%9F%9F%E7%9A%84%E5%B8%83%E5%B1%80"><span class="toc-text">战斗区域的布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%8C%96%E8%AE%BE%E8%AE%A1"><span class="toc-text">功能化设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E6%8C%91%E6%88%98"><span class="toc-text">控制挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E6%B8%B8%E6%88%8F%E6%80%A7"><span class="toc-text">扩展游戏性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="战斗区域剖析";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        本站使用
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.0" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+	
+	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/issues.min.js');
+	
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/valine.min.js"></script>
+
+
+<script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  pjax_comment=pjax_valine;
+</script>
+
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/app.min.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.0/source/js/search/hexo.min.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://katanaproduction.cn' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://katanaproduction.cn' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://katanaproduction.cn' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      
+	  
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+       
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        if (typeof IssuesAPI == "undefined") {
+          loadIssuesJS();
+        }
+        
+		
+          try{pjax_comment();} catch (e) {}
+        
+      } catch (e) {
+        console.log(e);
+      }
+	  
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>
