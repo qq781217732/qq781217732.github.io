@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -24,9 +22,15 @@
 
   <!-- 页面元数据 -->
   
-  <title>标签：HoudiniVex - Katana Production</title>
+  <title>压迫&amp;漏斗理论 - Katana Production</title>
+  
+    <meta name="keywords" content="LevelDesign">
   
 
+  
+    <meta name="description" content="
+本文中，Qantm学院的游戏设计理论讲师卢克·麦克米兰介绍了如何在游戏设计中引导玩家，以经典的2D射击游戏为例，来说明其在澳大利亚昆士兰音乐学院的博士时所改编的作品中的实践。
+">
   
 
   <!-- feed -->
@@ -317,7 +321,7 @@
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210301012742.png"></div>
           
@@ -387,280 +391,303 @@
         <div class="body-wrapper" id="pjax-container">
           
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
+
+
   
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/01/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day5/">
-        Houdini Vex编程之路——初学篇 Day5
+    <div class='headimg-div'>
+      <a class='headimg-a'>
+        <img class='headimg' src='https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210621233028.png'/>
       </a>
-    </h2>
+    </div>
   
-  <div class='md'>
+  <div class="article-meta" id="top">
     
-      <p>今日的内容</p>
+    
+    
+      <h1 class="title">
+        压迫&漏斗理论
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png">
+    <p>Katana</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/LevelDesign/">LevelDesign</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年6月22日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="压迫&漏斗理论" data-path="/2021/06/22/%E5%8E%8B%E8%BF%AB&%E6%BC%8F%E6%96%97%E7%90%86%E8%AE%BA/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <blockquote>
+<p>本文中，Qantm学院的游戏设计理论讲师卢克·麦克米兰介绍了如何在游戏设计中引导玩家，以经典的2D射击游戏为例，来说明其在澳大利亚昆士兰音乐学院的博士时所改编的作品中的实践。</p>
+</blockquote>
+<a id="more"></a>
+
+<p>作者：卢克·麦克米兰[2005.04.11]</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210621232642.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210621232642.png" srcset="data:image/png;base64,666"></p>
+<h2 id="现有环境驱动的RLD模型-Existing-Models-of-RLD-for-Environment-Driven-Titles"><a href="#现有环境驱动的RLD模型-Existing-Models-of-RLD-for-Environment-Driven-Titles" class="headerlink" title="现有环境驱动的RLD模型(Existing Models of RLD for Environment-Driven Titles)"></a>现有环境驱动的RLD模型(Existing Models of RLD for Environment-Driven Titles)</h2><p><strong>术语</strong></p>
+<p>RLD：<strong>Rational Level Design</strong>,即<strong>理性关卡设计</strong></p>
+<p>就当代理性关卡设计的方法而言，<strong>视线</strong>这一关键的<strong>难度指标</strong>得到了广泛认可。也就是说，<strong>玩家视线越大</strong>，他们便越感觉自己能够<strong>掌控局势</strong>，并且<strong>越是特殊场景越容易发生</strong>。相反的情况也适用于<strong>限制玩家的视线，</strong>他们会<strong>变得更加犹豫不决</strong>。因为，这些类型的场景通常与更高难度有关。《<em>毁灭战士3</em>》中<strong>封闭空间</strong>和<strong>手电筒的使用</strong>是这些<strong>理论与原理</strong>发挥作用的一个<strong>很好例子</strong>。由于<strong>狭窄</strong>的走廊<strong>提供的视线有限</strong>，<strong>氛围变得非常紧张</strong>。并且由于视线有限，相关的电报时间有限，和敌人相遇时将会<strong>游戏难度将会困难</strong>。</p>
+<p><strong>压迫&amp;漏斗</strong>背后的两个<strong>关键指标</strong>是<strong>入口(Portals)和遮挡物(Occluders)。根据镜头位置，视锥和视角的不同，入口会</strong>增加玩家的视线<strong>，而遮挡物会</strong>限制玩家的视线。图1摘自Byrne（2006）的《 Game Level Design》一书，从技术角度上很好地展示了这一概念。但是，这并不是我们为玩家呈现游戏世界的方式。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210621232715.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210621232715.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图1</strong></p>
+<p>在几乎所有第一人称和一些第三人称视角游戏，镜头的<strong>兴趣点或者玩家操控角色</strong>，都会<strong>靠的非常近</strong>。图2是一个透视图的示例，并且是为游戏设计师提供的最适合的<strong>入口和遮挡物概念的示例</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210621233028.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210621233028.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图2</strong></p>
+<p>尽管并非所有游戏都是3D的，但在当今的<strong>便携式和移动游戏市场中</strong>，2D游戏在商业上是可行的，并且很受欢迎。考虑到这一点，让我们从传统的<strong>自顶向下的2D游戏</strong>重新去考虑<strong>入口和遮挡物</strong>的概念。图中表示入口和遮挡物的<strong>局限性</strong>，由于游戏世界是<strong>通过使用屏幕上的玩家角色来进行抽象</strong>的，与图2中的示例不同，因此它<strong>不受屏幕上元素的限制</strong>。对于<strong>玩家角色驱动的2D游戏</strong>，<strong>入口便是屏幕本身</strong>，<strong>遮挡物则是屏幕物理上的框架</strong>。<img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210621233228.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210621233228.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图3</strong></p>
+<p>在这一点，<strong>压迫&amp;漏斗理论</strong>则可作为合适<strong>入口</strong>和<strong>遮挡物</strong>的替代方法。压迫&amp;漏斗是一种理性的<strong>关卡设计原则</strong>，它着眼于如何<strong>在屏幕上</strong>，将诸如<strong>敌人</strong>，<strong>环境物体</strong>，<strong>弹幕射击</strong>和<strong>其他碰撞物体之类的元素</strong>，用于<strong>提高游戏难度并强烈激发玩家的情感</strong>。</p>
+<hr>
+<p>[1]遮挡示例。转载自Game Level Design，第231页。Charles River Media Inc.</p>
+<h2 id="弗洛伊德是对的…"><a href="#弗洛伊德是对的…" class="headerlink" title="弗洛伊德是对的…"></a>弗洛伊德是对的…</h2><p>在继续探讨<strong>如何应用此原理</strong>的特定示例前，有必要<strong>解释下该理论的起源</strong>，以便将情感这一成分纳入我们的讨论范围。撇开玩笑和偷笑不谈，Dick被许多人认为是许多<strong>设计决策的灵感来源</strong>，但阴道却很少被<strong>赋予如此重要的设计意义</strong>，尤其是在游戏中。<strong>压迫和漏斗的理论</strong>源自Irem在1987年发布的R-Type(即异形战机式)游戏。R-type是一种传统的侧滚Shmup(“Shoot ‘Em Up”-全部射死)，具有丰富的美感，其很大程度上源于瑞士艺术家HR Giger的作品。在提及Giger的作品时，Irem在游戏设计中<strong>加入了一些有力元素，引起了玩家的强烈反响。</strong></p>
+<p>要了解这一点，我们需要考虑<strong>Shmup的工作原理</strong>，尤其是<strong>关卡中的Shmup</strong>。Shmup具有<strong>一个连贯的翻滚动作</strong>，不断<strong>迫使玩家进入更加紧密和激烈的范围</strong>，<strong>唯一的出路就是”直接通过”*<em>。在这一点上，</em>R-Type*类型游戏的动态符号学，</strong>和人类的诞生过程有着相似之处<strong>。弗洛伊德认为，</strong>出生时所带来的创伤，在后来所有的焦虑症中都有着重要作用<strong>，但是后来他放弃了这一理论。这并没有阻止后来的心理学家，例如奥托·兰克（Otto Rank）等人，</strong>探索出生过程及其对发育过程的影响**。Grof（2002）讨论了生育的第二阶段，并将其描述如下：</p>
+<blockquote>
+<p>在分娩的下一阶段，<strong>子宫的收缩持续侵袭</strong>着<strong>胎儿</strong>，但是子宫颈的扩张<strong>允许胎儿通过产道逐渐推进</strong>。这一阶段的重演，并不像前一阶段那样，涉及到对受苦受难者角色的专有认同；它还提供了<strong>进入被积压的凶残而又具有攻击性的巨大蓄水池“（译者：是指代羊水？）”</strong>的<strong>途径</strong>。。</p>
+</blockquote>
+<p>不管<strong>出生时创伤的概念在心理学上是否重要</strong>，我们都可以从中提炼出<strong>两个非常重要的事情</strong>：收缩通常<strong>不会令人向往</strong>；其次，<strong>收缩时我们感到有必要同这些力量作斗争。</strong>就<em>R-Type</em>之类的Shmup而言，很容易看到<strong>相似之处</strong>-我们拥有一种可以<strong>迫使玩家进入狭窄空间</strong>的方法，<strong>解决这些问题并消除束缚</strong>的唯一方法，是<strong>摧毁并从屏幕上清除它们</strong>。最为重要的一点是，该论点还有很多<strong>超出本实践驱动部分</strong>范围的内容，但是，这些信息足以<strong>为以下实例提供背景支撑</strong>。</p>
+<h2 id="将理论付诸实践"><a href="#将理论付诸实践" class="headerlink" title="将理论付诸实践"></a>将理论付诸实践</h2><p>既然我们对理论的起源有了一定的了解，那么现在该<strong>证明这种观念</strong>的实际含义了。为此，该特定作品将在<strong>Shmup风格的束缚下工作</strong>，考虑到随着移动游戏的出现，<strong>该风格的普及程度越来越高，这尤其合适</strong>。由于这是一种理性的设计方法，因此在继续进行之前，先<strong>确定一些关键指标</strong>很重要。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210621234810.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210621234810.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图4</strong></p>
+<p>为了实现压迫和漏斗，我们需要了解，与玩家身上的各种<strong>接近矢量</strong>相关联的<strong>难度指标</strong>。再一次，我们以<em>R-Type</em>为例。在图4中，<strong>主轴线(Primary Axis)是主要射击轴线-弹幕离开玩家头像的轴线</strong>。通常，玩家<strong>会发现最容易对付的敌人</strong>，或是<strong>其他沿着正前方矢量移动的压迫元素</strong>，标记为<strong>绿色(Easy)**。正对角线上的接近矢量为移动难度，最困难的接近矢量是与主轴相反的那些。（因为玩家通常</strong>无法用武器解决这些问题**）。</p>
+<p>一旦你了解了接近矢量，那么是时候了解<strong>如何压迫玩家</strong>了。基本上，游戏中的任何碰撞对象都可以作为一种压迫的代表。在<strong>Shmups</strong>的例子中，我们有几个非常明显的例子:</p>
 <ol>
-<li><strong>模数的用途</strong></li>
-<li><strong>通过量化逐步令物体平滑</strong></li>
-<li><strong>通过Chramp伪装截断效果</strong></li>
-<li><strong>练习题</strong></li>
+<li> <strong>环境</strong></li>
+<li> <strong>弹幕</strong></li>
+<li> <strong>敌人</strong></li>
 </ol>
-    
-  </div>
+<h2 id="环境压迫"><a href="#环境压迫" class="headerlink" title="环境压迫"></a>环境压迫</h2><p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/image009.jpg" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/image009.jpg" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>Table 1</strong></p>
+<p>从上面的示例中可以看出，<strong>漏斗区域</strong>是关卡设计中的一个<strong>区域</strong>，其目的是<strong>赋予玩家力量</strong>，既可创造针对<strong>令人费解的接近矢量</strong>的<strong>弹幕屏障</strong>，又可充当<strong>对敌人进行人群控制</strong>的<strong>机制</strong>。然而漏斗主要<strong>取决于两个可变因素</strong>：首先，漏斗区域<strong>与主轴方向</strong>一致，其次，漏斗区域的<strong>长度会影响战略上是否有利</strong>。图5和图6是这两种用途的很好的例子。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210622002133.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210622002133.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图5</strong></p>
+<p>在图5的情况下，漏斗区域<strong>很短</strong>，这使玩家可以<strong>扩大视线</strong>，并确定他们<strong>通过漏斗区域时是否安全</strong>。在此示例中，漏斗区域可以防止，任何沿前方对角线的弹幕矢量击中玩家，并且由于<strong>视线较大</strong>，<strong>玩家能够更为有效地掌控局势</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/image015.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/image015.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图6</strong></p>
+<p>在图6中，由于玩家<strong>占据了屏幕上的大部分空间</strong>，并<strong>限制了玩家的视线</strong>（类似由<strong>有限视线所关联的情绪</strong>），此时玩家将会<strong>更加犹豫于通过漏斗区域</strong>。因此，这不是一个漏斗，<strong>而是另一个环境的压迫点</strong>。在这两种情形下，设计人员始终注意到，<strong>玩家在所有的压迫点上进行“冲刺”</strong>，从而证明了，玩家<strong>会在尽可能的情况下，积极避免被压迫</strong>的观点。</p>
+<h2 id="敌人压迫"><a href="#敌人压迫" class="headerlink" title="敌人压迫"></a>敌人压迫</h2><p>使用<strong>敌人作为压迫元素</strong>，与使用环境压迫略有不同，因为在几乎所有的Shmup中，玩家都可以<strong>使用武器早早地消灭这些压力</strong>，以防这些压迫元素变得过于强大。从RLD的角度来看，这意味着，使用更多”有机”的接近矢量，<strong>将敌人作为压迫元素</strong>，可能会更加广泛。由于玩家能够运用自己的火力，<strong>消灭这些压力</strong>，这使得我们对于<strong>弹幕的分析</strong>，会引发一点小问题。我们可以在表2中看到一个很好的示例。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210622004121.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/20210622004121.png" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>Table 2</strong></p>
+<p>Table2是从联合国中队这款游戏中，提取的<strong>压迫时间顺序图</strong>。 在这个例子中，将有从玩家上下方，靠近玩家后方的接近矢量，它们的主轴朝向玩家，这很容易被玩家越过。Table2以有趣的方式，展示了与自动滚屏游戏相关的玩家心理。你会发现，大多数情况下，在横版滚屏游戏的关卡中，业余玩家<strong>总是会被迫紧靠屏幕左侧或底部</strong>。<strong>而在垂直滚屏中</strong>，<strong>敌人很少会从后方的接近矢量靠近</strong>，这与对<strong>玩家行为的相关观察和难度指标</strong>有关。不过，在联合国中队里，玩家可以在死亡前承受多次攻击，所以这个问题<strong>在某种程度上是可以避免的</strong>，但是仍应该<strong>非常谨慎地使用</strong>。回到当前例子，Table2展示了，如何<strong>使用多个独立移动的压迫元素</strong>，对玩家造成压制，并保持公平-当然也要记住，只要它们沿着主轴靠近，玩家也始终可以用武器来<strong>消灭这些压迫元素</strong>。</p>
+<h2 id="弹幕压迫"><a href="#弹幕压迫" class="headerlink" title="弹幕压迫"></a>弹幕压迫</h2><p>如今，弹幕设计经常被忽略，这主要是因为预先确定的子弹模式，在很大程度上与更加怀旧的游戏类型（即Shmup）有关。顺便说一句，BulletML是一个学习细微差别的弹幕设计有效系统，下面的示例均来自该特定脚本系统。</p>
+<p><strong>弹幕作为一种压迫形式</strong>很有趣，因为玩家通常可以通过，<strong>在敌人成为问题之前，消灭敌人来完全避免弹幕</strong>。因此，这使<strong>Shmups的RLD增加了新的复杂性</strong>，因为一旦玩家<strong>理解了特定敌人的弹幕类型可能造成的问题</strong>，他们将学会<strong>优先确定摧毁特定敌人的能力</strong>，但这超出了此特定讨论内容的范围。</p>
+<p>在我们主要讨论压迫和漏斗时，弹幕设计是描述最终指标（扩张区域）重要性的有效方法。顾名思义，从<strong>情感和难度的角度</strong>来看，<strong>扩张与压迫</strong>相反，可以<strong>描述弹幕并赋予其难度等级</strong>，具体取决于弹幕所提供的<strong>扩张空间量</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/image025.jpg" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/image025.jpg" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图7</strong></p>
+<p>图7是为<strong>垂直滚屏游戏的弹幕设计</strong>的示例，其中主轴面向屏幕顶部。在上面的示例中，<strong>弹幕具有一致的运动矢量</strong>，并且较大组中包含的每个弹丸具有相同速度。在此示例中，我们可以看到扩张可能（绿色箭头），远远超过红色的压迫箭头。这是导致玩家易于走位的情形。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/image027.jpg" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/qq781217732/CDN//Tittle/image027.jpg" srcset="data:image/png;base64,666"></p>
+<p>​                                                                             <strong>图8</strong></p>
+<p>图8是与压力（红色箭头）相比，由非常有限的扩张区域（绿色箭头），所创建的难度指标-<strong>一致的运动矢量和一致的速度</strong>。在Danmaku游戏中可以看到这种极端现象，其弹幕中有很多花样，创造了许多独特的接近矢量。通常，这些弹幕对于每个碰撞对象也将具有不同速度，这也导致情况变得更加复杂。</p>
+<p>根据目前提供的信息，我们可以确定一些与压迫和漏斗相关的，非常基本的难度指标；</p>
+<p><strong>简单</strong></p>
+<ul>
+<li>很多明显的扩张区域。</li>
+<li>压迫矢量有限。</li>
+<li>宽阔的漏斗区域。</li>
+</ul>
+<p>困难</p>
+<ul>
+<li>独特或非常不明显的扩张区域。</li>
+<li>一次沿多个矢量压迫，尤其是与主轴相反的矢量。</li>
+<li>狭窄的漏斗区域。</li>
+</ul>
+<h2 id="总结思考"><a href="#总结思考" class="headerlink" title="总结思考"></a>总结思考</h2><p>压迫和漏斗，是解决与2D关卡设计相关的设计问题的一种独特方法，但是它并<strong>不能代替视线理论</strong>，而是一种用来<strong>增强这种已经牢固模型</strong>的方法。这样，我们将压迫和漏斗应用到3D游戏世界中就不会太过困难，也或者与我们在本文中看到的内容不同，这只是证明该方法有效的下一个合乎逻辑的步骤。同任何事情一样，总有改进的余地。在此处，当我们将该理论应用于3D游戏世界的构建时，<strong>建筑理论和照明的惯例，显而易见的会是我们的兴趣点</strong>。</p>
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-03-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/TechArt/">TechArt</a><span class="sep"></span><a class="category-link" href="/categories/TechArt/Houdini/">Houdini</a>
-        
-      </div>
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/03/01/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day5/'>
-            阅读全文
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://katanaproduction.cn/2021/06/22/%E5%8E%8B%E8%BF%AB&%E6%BC%8F%E6%96%97%E7%90%86%E8%AE%BA/>https://katanaproduction.cn/2021/06/22/%E5%8E%8B%E8%BF%AB&%E6%BC%8F%E6%96%97%E7%90%86%E8%AE%BA/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-22T01:47:56+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年6月22日</p>
+  </a>
 </div>
 
-          </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day4/">
-        Houdini Vex编程之路——初学篇 Day4
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <h3 id="Chramp"><a href="#Chramp" class="headerlink" title="Chramp"></a>Chramp</h3><p>Chramp可以是一种更直接，更直观的方式来调整参数。如果你在Photoshop中使用过曲线工具，将会很直观，否则我将需要一些gif图像来作两者的表示:)</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
         
           
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/LevelDesign/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>LevelDesign</p></a></div>
+
+
         
-        <time>2021-02-28</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/TechArt/">TechArt</a><span class="sep"></span><a class="category-link" href="/categories/TechArt/Houdini/">Houdini</a>
-        
-      </div>
       
-        <div>
-          <a class='readmore' href='/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day4/'>
-            阅读全文
-          </a>
-        </div>
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://katanaproduction.cn/2021/06/22/%E5%8E%8B%E8%BF%AB&%E6%BC%8F%E6%96%97%E7%90%86%E8%AE%BA/&title=压迫&漏斗理论 - Katana Production&summary=
+本文中，Qantm学院的游戏设计理论讲师卢克·麦克米兰介绍了如何在游戏设计中引导玩家，以经典的2D射击游戏为例，来说明其在澳大利亚昆士兰音乐学院的博士时所改编的作品中的实践。
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://katanaproduction.cn/2021/06/22/%E5%8E%8B%E8%BF%AB&%E6%BC%8F%E6%96%97%E7%90%86%E8%AE%BA/&title=压迫&漏斗理论 - Katana Production&summary=
+本文中，Qantm学院的游戏设计理论讲师卢克·麦克米兰介绍了如何在游戏设计中引导玩家，以经典的2D射击游戏为例，来说明其在澳大利亚昆士兰音乐学院的博士时所改编的作品中的实践。
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://katanaproduction.cn/2021/06/22/%E5%8E%8B%E8%BF%AB&%E6%BC%8F%E6%96%97%E7%90%86%E8%AE%BA/&title=压迫&漏斗理论 - Katana Production&summary=
+本文中，Qantm学院的游戏设计理论讲师卢克·麦克米兰介绍了如何在游戏设计中引导玩家，以经典的2D射击游戏为例，来说明其在澳大利亚昆士兰音乐学院的博士时所改编的作品中的实践。
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/06/18/%E7%A9%BA%E9%97%B4%E6%8C%87%E6%A0%87%EF%BC%9A%E6%88%98%E6%9C%AF%E6%80%A7%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1/'>
+          <p class='title'>空间指标：战术关卡设计<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+什么是优秀的关卡设计？身为一名博士和教育家，麦克米兰（McMillan）与育碧（Ubisoft）合作创建了一门游戏设计课程，它研究了视野将如何影响玩家。它通过展示了一些游戏场景，表明了这些场景...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day3/">
-        Houdini Vex编程之路——初学篇 Day3
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>希望你昨天开始进行了这些练习！</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-02-28</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/TechArt/">TechArt</a><span class="sep"></span><a class="category-link" href="/categories/TechArt/Houdini/">Houdini</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day3/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day2/">
-        Houdini Vex编程之路——初学篇 Day2
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>Vex具有很多功能和用法，下面的官方链接作为一个相关的整合列表。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-02-28</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/TechArt/">TechArt</a><span class="sep"></span><a class="category-link" href="/categories/TechArt/Houdini/">Houdini</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day2/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day1/">
-        Houdini Vex编程之路——初学篇 Day1
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>这是一个种种意义上的非常时期，在此记录下我的学习过程。</p>
-<p>本系列文章内容主要是Houdini中的VEX学习以及应用技巧，将包含本人主要参考的CGWIKI上的系列文章为主，对其内容进行翻译等，本系列的学习周期为20天，每天5到30分钟练习。</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'></a>
-        
-        <time>2021-02-28</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/TechArt/">TechArt</a><span class="sep"></span><a class="category-link" href="/categories/TechArt/Houdini/">Houdini</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/28/Houdini%20Vex%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9D%E5%AD%A6%E7%AF%87%20Day1/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
+  </article>
 
 
-    
-  
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -668,146 +695,28 @@
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/qq781217732/CDN@main/Blogger.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>Katana</h2>
-        
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="mailto:781217732@qq.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/qq781217732/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Art/" href="/categories/Art/"
-            id="categoriesArt"
-            ><div class='name'>Art</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/Art/Lighting/" href="/categories/Art/Lighting/"
-            id="categoriesArtLighting"
-            ><div class='name'>Lighting</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/LevelDesign/" href="/categories/LevelDesign/"
-            id="categoriesLevelDesign"
-            ><div class='name'>LevelDesign</div><div class='badge'>(9)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/LevelDesign/ArchitectDesign/" href="/categories/LevelDesign/ArchitectDesign/"
-            id="categoriesLevelDesignArchitectDesign"
-            ><div class='name'>ArchitectDesign</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/LevelDesign/LightingDesign/" href="/categories/LevelDesign/LightingDesign/"
-            id="categoriesLevelDesignLightingDesign"
-            ><div class='name'>LightingDesign</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/TechArt/" href="/categories/TechArt/"
-            id="categoriesTechArt"
-            ><div class='name'>TechArt</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/TechArt/Houdini/" href="/categories/TechArt/Houdini/"
-            id="categoriesTechArtHoudini"
-            ><div class='name'>Houdini</div><div class='badge'>(5)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89%E7%8E%AF%E5%A2%83%E9%A9%B1%E5%8A%A8%E7%9A%84RLD%E6%A8%A1%E5%9E%8B-Existing-Models-of-RLD-for-Environment-Driven-Titles"><span class="toc-text">现有环境驱动的RLD模型(Existing Models of RLD for Environment-Driven Titles)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%97%E6%B4%9B%E4%BC%8A%E5%BE%B7%E6%98%AF%E5%AF%B9%E7%9A%84%E2%80%A6"><span class="toc-text">弗洛伊德是对的…</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E7%90%86%E8%AE%BA%E4%BB%98%E8%AF%B8%E5%AE%9E%E8%B7%B5"><span class="toc-text">将理论付诸实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8E%8B%E8%BF%AB"><span class="toc-text">环境压迫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%8C%E4%BA%BA%E5%8E%8B%E8%BF%AB"><span class="toc-text">敌人压迫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B9%E5%B9%95%E5%8E%8B%E8%BF%AB"><span class="toc-text">弹幕压迫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%80%9D%E8%80%83"><span class="toc-text">总结思考</span></a></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/HoudiniVex/" style="font-size: 19px; color: #777">HoudiniVex</a> <a href="/tags/LevelDesign/" style="font-size: 14px; color: #999">LevelDesign</a> <a href="/tags/LightingDesign/" style="font-size: 24px; color: #555">LightingDesign</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
 		  
@@ -816,8 +725,8 @@
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="压迫&amp;漏斗理论";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
